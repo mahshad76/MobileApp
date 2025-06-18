@@ -1,17 +1,8 @@
 package com.mahshad.network.model
 
+import com.mahshad.data.Data
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
-@Serializable
-data class ObjectDto(
-    @SerialName("id")
-    val id: String,
-    @SerialName("name")
-    val name: String,
-    @SerialName("data")
-    val data: DataDto?,
-)
 
 @Serializable
 data class DataDto(
@@ -48,3 +39,21 @@ data class DataDto(
     val capacity2: String?,
 )
 
+fun DataDto.toData() = Data(
+    generation = this.generation,
+    price = this.price,
+    capacity = this.capacity,
+    screenSize = this.screenSize,
+    color = this.color,
+    description = this.description,
+    strapColour = this.strapColour,
+    caseSize = this.caseSize,
+    year = this.year,
+    price2 = this.price2,
+    cpuModel = this.cpuModel,
+    hardDiskSize = this.hardDiskSize,
+    generation2 = this.generation2,
+    color2 = this.color2,
+    capacityGb = this.capacityGb,
+    capacity2 = this.capacity2,
+)
