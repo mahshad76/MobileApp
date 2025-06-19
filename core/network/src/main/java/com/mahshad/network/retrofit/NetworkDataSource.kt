@@ -4,7 +4,6 @@ import com.mahshad.network.model.ObjectDto
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-//TODO put the api service functions here, and do the binding in the di
 interface NetworkDataSource {
     suspend fun getObjects(): Response<List<ObjectDto>?>
 
