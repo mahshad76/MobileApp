@@ -39,7 +39,15 @@ dependencies {
 
     // di
     implementation(libs.hilt.android)
+    implementation libs.firebase.appdistribution.gradle
     kapt(libs.hilt.compiler)
+
+    //coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    implementation(project(':core:network'))
+    implementation(project(':core:model'))
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
