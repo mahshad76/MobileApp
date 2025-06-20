@@ -1,6 +1,6 @@
 package com.mahshad.network.model
 
-import com.mahshad.data.Data
+import com.mahshad.model.data.Data
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

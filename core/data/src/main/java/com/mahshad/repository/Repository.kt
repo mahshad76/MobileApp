@@ -1,7 +1,7 @@
 package com.mahshad.repository
 
-import com.mahshad.data.Object
-
-interface Repository {
-    fun getObjects(): List<Object>
-}
+//import com.mahshad.model.data.Object
+//
+//interface Repository {
+//    fun getObjects(): List<com.mahshad.model.data.Object>
+//}

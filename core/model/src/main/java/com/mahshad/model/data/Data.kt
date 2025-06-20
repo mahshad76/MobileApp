@@ -1,4 +1,4 @@
-package com.mahshad.data
+package com.mahshad.model.data
 
 data class Data(
     val generation: String?,
