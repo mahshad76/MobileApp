@@ -5,35 +5,41 @@ import com.mahshad.model.data.Object
 import com.mahshad.network.ApiService
 import com.mahshad.network.model.ObjectDto
 import com.mahshad.network.model.toObject
-import kotlinx.coroutines.Dispatchers
+import com.mahshad.threading.di.IoDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
-class DefaultRepository @Inject constructor(private val apiService: ApiService) : Repository {
+class DefaultRepository @Inject constructor(
+    private val apiService: ApiService,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
+) : Repository {
     override suspend fun getObjects(): List<Object>? {
-        try {
-            val response = apiService.getObjects()
-            if (response.isSuccessful) {
-                return response.body()?.let {
-                    it.map { objectDto ->
-                        objectDto.toObject()
-                    }
-                } ?: emptyList()
+        return withContext(ioDispatcher) {
+            try {
+                val response = apiService.getObjects()
+                if (response.isSuccessful) {
+                    return@withContext response.body()?.let {
+                        it.map { objectDto ->
+                            objectDto.toObject()
+                        }
+                    } ?: emptyList()
 
-            } else {
-                Log.d("TAG", "getObjects is not successful")
-                return null
+                } else {
+                    Log.d("TAG", "getObjects is not successful")
+                    return@withContext null
 
+                }
+            } catch (e: Exception) {
+                Log.e("TAG", "getObjects: an error has occurred, ${e.message}")
+                return@withContext null
             }
-        } catch (e: Exception) {
-            Log.e("TAG", "getObjects: an error has occurred, ${e.message}")
-            return null
         }
     }
 
     override suspend fun getObjectsById(ids: List<Int>): List<Object>? {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiService.getObjectsById(ids)
                 if (response.isSuccessful) {
@@ -56,7 +62,7 @@ class DefaultRepository @Inject constructor(private val apiService: ApiService) 
     }
 
     override suspend fun postAnObject(body: ObjectDto): Object? {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiService.postAnObject(body)
                 if (response.isSuccessful) {
@@ -74,7 +80,7 @@ class DefaultRepository @Inject constructor(private val apiService: ApiService) 
     }
 
     override suspend fun deleteAnObject(id: Int): ResponseBody? {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiService.deleteAnObject(id)
                 if (response.isSuccessful) {
@@ -91,7 +97,7 @@ class DefaultRepository @Inject constructor(private val apiService: ApiService) 
     }
 
     override suspend fun partialUpdate(id: Int, body: Map<String, Any>): Object? {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiService.partialUpdate(id, body)
                 if (response.isSuccessful) {
@@ -108,7 +114,7 @@ class DefaultRepository @Inject constructor(private val apiService: ApiService) 
     }
 
     override suspend fun update(id: Int, body: ObjectDto): Object? {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiService.update(id, body)
                 if (response.isSuccessful) {

@@ -50,6 +50,7 @@ dependencies {
 
     implementation(project(':core:network'))
     implementation(project(':core:model'))
+    implementation(project(':core:threading'))
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
