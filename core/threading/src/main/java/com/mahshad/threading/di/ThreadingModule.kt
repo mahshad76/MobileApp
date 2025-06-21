@@ -1,4 +1,4 @@
-package com.mahshad.threading
+package com.mahshad.threading.di
 
 import dagger.Module
 import dagger.Provides
