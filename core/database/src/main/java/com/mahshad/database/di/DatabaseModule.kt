@@ -2,6 +2,7 @@ package com.mahshad.database.di
 
 import android.content.Context
 import androidx.room.Room
+import com.mahshad.database.DAO
 import com.mahshad.database.Database
 import dagger.Module
 import dagger.Provides
@@ -22,4 +23,10 @@ object DatabaseModule {
         Database::class.java,
         Database.DATABASE_NAME,
     ).build()
+
+    @Provides
+    @Singleton
+    fun provideObjectDao(database: Database): DAO {
+        return database.dao()
+    }
 }

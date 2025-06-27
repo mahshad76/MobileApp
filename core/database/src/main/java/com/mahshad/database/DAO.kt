@@ -21,7 +21,7 @@ interface DAO {
     fun getAllLively(): LiveData<List<Object>>
 
     @Query("select * from Objects where object_id=:mobileId")
-    suspend fun searchById(mobileId: Int): List<Object>
+    suspend fun searchById(mobileId: Int): Object
 
     @Query("DELETE FROM Objects WHERE object_id = :mobileId")
     suspend fun delete(mobileId: Int)
