@@ -11,10 +11,10 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
-class DefaultRepository @Inject constructor(
+class DefaultObjectRepository @Inject constructor(
     private val apiService: ApiService,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
-) : Repository {
+) : ObjectRepository {
     override suspend fun getObjects(): List<Object>? {
         return withContext(ioDispatcher) {
             try {
