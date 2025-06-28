@@ -1,0 +1,20 @@
+package com.mahshad.datastore.di
+
+import android.content.Context
+import com.mahshad.datastore.preferencedatastore.PreferenceDataStoreManager
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataStoreModule {
+    @Singleton
+    @Provides
+    fun providePreferenceDataStore(@ApplicationContext context: Context): PreferenceDataStoreManager =
+        PreferenceDataStoreManager(context)
+
+}
