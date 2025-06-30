@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id 'com.google.protobuf'  // Keep this
+//    id 'com.google.protobuf'  // Keep this
     // Remove this next line:
     // id 'kotlin-android'
 }
@@ -32,11 +32,11 @@ android {
 
     // Optional: only if you have moved your proto files outside default location
     sourceSets {
-        main {
-            proto {
-                srcDir 'src/main/proto'  // or remove this block if proto files are in default place
-            }
-        }
+//        main {
+//            proto {
+//                srcDir 'src/main/proto'  // or remove this block if proto files are in default place
+//            }
+//        }
     }
 }
 
@@ -45,29 +45,29 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
 
-    implementation "androidx.datastore:datastore:1.0.0"
-    implementation "androidx.datastore:datastore-core:1.0.0"
-    implementation "com.google.protobuf:protobuf-javalite:3.23.4"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0"
+//    implementation "androidx.datastore:datastore:1.0.0"
+//    implementation "androidx.datastore:datastore-core:1.0.0"
+//    implementation "com.google.protobuf:protobuf-javalite:3.23.4"
+//
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0"
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.23.4"
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option 'lite'
-                }
-            }
-        }
-    }
-}
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:3.23.4"
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                java {
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
