@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("com.google.protobuf")
+    id 'com.google.protobuf'  // Keep this
+    // Remove this next line:
+    // id 'kotlin-android'
 }
 
 android {
@@ -10,7 +12,6 @@ android {
 
     defaultConfig {
         minSdk 24
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -29,28 +30,27 @@ android {
         jvmTarget = '11'
     }
 
+    // Optional: only if you have moved your proto files outside default location
     sourceSets {
         main {
             proto {
-                srcDirs("src/main/java/com/mahshad/model/proto") // Specify where your .proto files are located
+                srcDir 'src/main/proto'  // or remove this block if proto files are in default place
             }
         }
     }
 }
 
 dependencies {
-
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
-    // DataStore
-    implementation("androidx.datastore:datastore:1.0.0")
-    implementation("com.google.protobuf:protobuf-javalite:3.21.12")
-    //implementation("com.google.protobuf:protobuf-kotlin:3.21.12")
 
-    // Kotlin Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation "androidx.datastore:datastore:1.0.0"
+    implementation "androidx.datastore:datastore-core:1.0.0"
+    implementation "com.google.protobuf:protobuf-javalite:3.23.4"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0"
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
@@ -59,13 +59,14 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.21.12"
+        artifact = "com.google.protobuf:protoc:3.23.4"
     }
     generateProtoTasks {
-        all().forEach { task ->
+        all().each { task ->
             task.builtins {
-                create("java") { option("lite") }
-                //create("kotlin") { }
+                java {
+                    option 'lite'
+                }
             }
         }
     }
