@@ -38,6 +38,7 @@ dependencies {
     implementation libs.material
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.lifecycle.runtime.ktx.v270)
+    implementation(project(':core:model'))
 
     // di
     implementation(libs.hilt.android)
