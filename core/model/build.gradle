@@ -32,7 +32,7 @@ android {
     sourceSets {
         main {
             proto {
-                srcDirs("src/main/proto") // Specify where your .proto files are located
+                srcDirs("src/main/java/com/mahshad/model/proto") // Specify where your .proto files are located
             }
         }
     }
@@ -46,6 +46,7 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore:1.0.0")
     implementation("com.google.protobuf:protobuf-javalite:3.21.12")
+    //implementation("com.google.protobuf:protobuf-kotlin:3.21.12")
 
     // Kotlin Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
@@ -64,6 +65,7 @@ protobuf {
         all().forEach { task ->
             task.builtins {
                 create("java") { option("lite") }
+                //create("kotlin") { }
             }
         }
     }
