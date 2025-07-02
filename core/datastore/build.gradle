@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -29,23 +30,27 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    sourceSets {
-
-    }
 }
 
 dependencies {
+
+    // DataStore (Preferences and Proto)
+    implementation libs.androidx.datastore.v100
+    implementation libs.protobuf.javalite.v3194
+
+    // Kotlin Coroutines
+    implementation libs.kotlinx.coroutines.core.v160
+    implementation libs.kotlinx.coroutines.android.v160
+
+    // di
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.lifecycle.runtime.ktx.v270)
-    implementation(project(':core:model'))
-
-    // di
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
@@ -55,3 +60,19 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
+protobuf {
+    protoc {
+        artifact = libs.protobuf.protoc.get().toString()
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
+}
+
