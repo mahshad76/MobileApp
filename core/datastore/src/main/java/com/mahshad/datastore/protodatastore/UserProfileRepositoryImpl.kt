@@ -1,5 +1,8 @@
-package com.mahshad.datastore
+package com.mahshad.datastore.protodatastore
 
+import com.mahshad.datastore.Address
+import com.mahshad.datastore.UserProfile
+import com.mahshad.datastore.UserProfileSerializer
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
