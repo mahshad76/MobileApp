@@ -9,7 +9,6 @@ import java.io.OutputStream
 object UserProfileSerializer : Serializer<UserProfile> {
     override val defaultValue: UserProfile = UserProfile.getDefaultInstance()
 
-    @Suppress("BlockingMethodInNonBlockingContext")
     override suspend fun readFrom(input: InputStream): UserProfile {
         try {
             return UserProfile.parseFrom(input)
@@ -18,7 +17,6 @@ object UserProfileSerializer : Serializer<UserProfile> {
         }
     }
 
-    @Suppress("BlockingMethodInNonBlockingContext")
     override suspend fun writeTo(t: UserProfile, output: OutputStream) =
         t.writeTo(output)
 }
