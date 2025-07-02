@@ -1,9 +1,11 @@
 package com.mahshad.datastore.protodatastore
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import com.mahshad.datastore.Address
 import com.mahshad.datastore.UserProfile
-import com.mahshad.datastore.userProfileDataStore
+import com.mahshad.datastore.UserProfileSerializer
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -11,6 +13,12 @@ import javax.inject.Inject
 class UserProfileRepositoryImpl @Inject constructor(
     private val applicationContext: Context // Inject Application Context
 ) : UserProfileRepository {
+
+    val Context.userProfileDataStore: DataStore<UserProfile> by dataStore(
+        fileName = "user_profile.pb",
+        serializer = UserProfileSerializer
+    )
+
     override val userProfileFlow: Flow<UserProfile> = applicationContext.userProfileDataStore.data
         .map { userProfile ->
             // You can perform any transformations here if needed,
