@@ -6,12 +6,14 @@ import androidx.datastore.dataStore
 import com.mahshad.datastore.Address
 import com.mahshad.datastore.UserProfile
 import com.mahshad.datastore.UserProfileSerializer
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class UserProfileRepositoryImpl @Inject constructor(
-    private val applicationContext: Context // Inject Application Context
+    @ApplicationContext
+    private val applicationContext: Context
 ) : UserProfileRepository {
 
     val Context.userProfileDataStore: DataStore<UserProfile> by dataStore(
@@ -20,22 +22,21 @@ class UserProfileRepositoryImpl @Inject constructor(
     )
 
     override val userProfileFlow: Flow<UserProfile> = applicationContext.userProfileDataStore.data
-        .map { userProfile ->
+        .map { userProfile: UserProfile ->
             // You can perform any transformations here if needed,
-            // but often you'll return the proto object directly.
             userProfile
         }
 
     override suspend fun updateName(name: String) {
-        applicationContext.userProfileDataStore.updateData { currentProfile ->
-            currentProfile.toBuilder() // Use the generated toBuilder() method
+        applicationContext.userProfileDataStore.updateData { currentProfile: UserProfile ->
+            currentProfile.toBuilder()
                 .setName(name)
-                .build() // Build a new immutable instance
+                .build()
         }
     }
 
     override suspend fun updateAge(age: Int) {
-        applicationContext.userProfileDataStore.updateData { currentProfile ->
+        applicationContext.userProfileDataStore.updateData { currentProfile: UserProfile ->
             currentProfile.toBuilder()
                 .setAge(age)
                 .build()
@@ -43,10 +44,10 @@ class UserProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateAddress(street: String, city: String, country: String) {
-        applicationContext.userProfileDataStore.updateData { currentProfile ->
+        applicationContext.userProfileDataStore.updateData { currentProfile: UserProfile ->
             currentProfile.toBuilder()
                 .setAddress(
-                    Address.newBuilder() // Assuming Address is also a generated proto message
+                    Address.newBuilder()
                         .setStreet(street)
                         .setCity(city)
                         .setCountry(country)
@@ -58,7 +59,7 @@ class UserProfileRepositoryImpl @Inject constructor(
 
     override suspend fun clearUserProfile() {
         applicationContext.userProfileDataStore.updateData {
-            UserProfile.getDefaultInstance() // Reset to default values defined in proto
+            UserProfile.getDefaultInstance()
         }
     }
 }
