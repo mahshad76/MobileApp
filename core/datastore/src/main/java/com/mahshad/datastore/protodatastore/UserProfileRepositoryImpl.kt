@@ -1,27 +1,16 @@
 package com.mahshad.datastore.protodatastore
 
+import android.content.Context
 import com.mahshad.datastore.Address
 import com.mahshad.datastore.UserProfile
-import com.mahshad.datastore.UserProfileSerializer
-import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
+import com.mahshad.datastore.userProfileDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-// Define the DataStore instance at the top level of the file for singleton access
-val Context.userProfileDataStore: DataStore<UserProfile> by dataStore(
-    fileName = "user_prefs.pb", // Recommended extension for Proto DataStore
-    serializer = UserProfileSerializer
-)
-
-// 2. Implement the repository interface
 class UserProfileRepositoryImpl @Inject constructor(
     private val applicationContext: Context // Inject Application Context
 ) : UserProfileRepository {
-
-    // Expose the DataStore's data Flow directly
     override val userProfileFlow: Flow<UserProfile> = applicationContext.userProfileDataStore.data
         .map { userProfile ->
             // You can perform any transformations here if needed,
@@ -29,7 +18,6 @@ class UserProfileRepositoryImpl @Inject constructor(
             userProfile
         }
 
-    // Implement the update methods using DataStore's updateData
     override suspend fun updateName(name: String) {
         applicationContext.userProfileDataStore.updateData { currentProfile ->
             currentProfile.toBuilder() // Use the generated toBuilder() method

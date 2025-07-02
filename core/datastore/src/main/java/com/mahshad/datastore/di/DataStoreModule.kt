@@ -24,5 +24,4 @@ abstract class DataStoreModule {
     @Binds
     abstract fun bindUserProfileRepository(userProfileRepository: UserProfileRepository):
             UserProfileRepositoryImpl
-
 }
