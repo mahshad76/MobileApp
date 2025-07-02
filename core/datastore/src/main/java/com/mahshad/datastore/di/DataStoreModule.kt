@@ -1,6 +1,8 @@
 package com.mahshad.datastore.di
 
 import android.content.Context
+import com.mahshad.datastore.preferencedatastore.AppPreferenceRepositoryImpl
+import com.mahshad.datastore.preferencedatastore.AppPreferencesRepository
 import com.mahshad.datastore.preferencedatastore.PreferenceDataStoreManager
 import com.mahshad.datastore.protodatastore.UserProfileRepository
 import com.mahshad.datastore.protodatastore.UserProfileRepositoryImpl
@@ -24,4 +26,9 @@ abstract class DataStoreModule {
     @Binds
     abstract fun bindUserProfileRepository(userProfileRepository: UserProfileRepository):
             UserProfileRepositoryImpl
+
+    @Singleton
+    @Binds
+    abstract fun bindAppPreferenceRepository(appPreferenceRepository: AppPreferencesRepository):
+            AppPreferenceRepositoryImpl
 }
