@@ -16,21 +16,14 @@ class DefaultObjectRepository @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ObjectRepository {
     override suspend fun getObjects(): List<Object>? {
+        val a = apiService.getObjects()
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.getObjects()
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.let {
-                        it.map { objectDto ->
-                            objectDto.toObject()
-                        }
-                    } ?: emptyList()
-
-                } else {
-                    Log.d("TAG", "getObjects is not successful")
-                    return@withContext null
-
-                }
+                return@withContext apiService
+                    .getObjects()
+                    .map { objectDto ->
+                        objectDto.toObject()
+                    }
             } catch (e: Exception) {
                 Log.e("TAG", "getObjects: an error has occurred, ${e.message}")
                 return@withContext null
@@ -41,19 +34,10 @@ class DefaultObjectRepository @Inject constructor(
     override suspend fun getObjectsById(ids: List<Int>): List<Object>? {
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.getObjectsById(ids)
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.let {
-                        it.map { objectDto ->
-                            objectDto.toObject()
-                        }
-                    } ?: emptyList()
-
-                } else {
-                    Log.d("TAG", "getObjectsByIds is not successful")
-                    return@withContext null
-
-                }
+                return@withContext apiService.getObjectsById(ids)
+                    .map { objectDto ->
+                        objectDto.toObject()
+                    }
             } catch (e: Exception) {
                 Log.e("TAG", "getObjectsByIds: an error has occurred, ${e.message}")
                 return@withContext null
@@ -64,14 +48,7 @@ class DefaultObjectRepository @Inject constructor(
     override suspend fun postAnObject(body: ObjectDto): Object? {
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.postAnObject(body)
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.toObject()
-                } else {
-                    Log.d("TAG", "postAnObject is not successful")
-                    return@withContext null
-                }
-
+                return@withContext apiService.postAnObject(body).toObject()
             } catch (e: Exception) {
                 Log.e("TAG", "postAnObject: an error has occurred, ${e.message}")
                 return@withContext null
@@ -82,13 +59,7 @@ class DefaultObjectRepository @Inject constructor(
     override suspend fun deleteAnObject(id: Int): ResponseBody? {
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.deleteAnObject(id)
-                if (response.isSuccessful) {
-                    return@withContext response.body()
-                } else {
-                    Log.d("TAG", "deleteAnObject is not successful")
-                    return@withContext null
-                }
+                return@withContext apiService.deleteAnObject(id)
             } catch (e: Exception) {
                 Log.e("TAG", "deleteAnObject: an error has occurred, ${e.message}")
                 return@withContext null
@@ -99,13 +70,7 @@ class DefaultObjectRepository @Inject constructor(
     override suspend fun partialUpdate(id: Int, body: Map<String, Any>): Object? {
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.partialUpdate(id, body)
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.toObject()
-                } else {
-                    Log.d("TAG", "partialUpdate is not successful")
-                    return@withContext null
-                }
+                return@withContext apiService.partialUpdate(id, body).toObject()
             } catch (e: Exception) {
                 Log.e("TAG", "partialUpdate: an error has occurred, ${e.message}")
                 return@withContext null
@@ -116,13 +81,7 @@ class DefaultObjectRepository @Inject constructor(
     override suspend fun update(id: Int, body: ObjectDto): Object? {
         return withContext(ioDispatcher) {
             try {
-                val response = apiService.update(id, body)
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.toObject()
-                } else {
-                    Log.d("TAG", "update is not successful")
-                    return@withContext null
-                }
+                return@withContext apiService.update(id, body).toObject()
             } catch (e: Exception) {
                 Log.e("TAG", "update: an error has occurred, ${e.message}")
                 return@withContext null
