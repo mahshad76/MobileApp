@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kotlin.kapt)
+    id("com.google.protobuf") version "0.9.4"
 }
 
 android {
@@ -56,8 +57,31 @@ dependencies {
     // di
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    //datastore
+    implementation("androidx.datastore:datastore:1.1.7")
+    implementation("com.google.protobuf:protobuf-javalite:3.21.11")
+    implementation("com.google.protobuf:protobuf-kotlin-lite:3.21.11")
 }
 
 kapt {
     correctErrorTypes = true
+}
+
+protobuf {
+    protoc {
+        artifact = libs.protobuf.protoc.get().toString()
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+                kotlin {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }

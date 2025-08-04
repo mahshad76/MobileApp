@@ -37,6 +37,7 @@ dependencies {
     // DataStore (Preferences and Proto)
     implementation libs.androidx.datastore.v100
     implementation libs.protobuf.javalite.v3194
+    implementation project(':core:network')
 
     // Kotlin Coroutines
     implementation libs.kotlinx.coroutines.core.v160
