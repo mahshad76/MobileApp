@@ -59,9 +59,9 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     //datastore
-    implementation("androidx.datastore:datastore:1.1.7")
-    implementation("com.google.protobuf:protobuf-javalite:3.21.11")
-    implementation("com.google.protobuf:protobuf-kotlin-lite:3.21.11")
+    implementation(libs.androidx.datastore.v117)
+    implementation(libs.protobuf.javalite.v32111)
+    implementation(libs.protobuf.kotlin.lite.v32111)
 }
 
 kapt {

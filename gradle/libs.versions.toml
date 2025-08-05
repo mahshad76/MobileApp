@@ -1,10 +1,12 @@
 [versions]
 agp = "8.10.1"
+androidxDatastore = "1.1.7"
 datastore = "1.1.1"
 datastorePreferences = "1.1.7"
 datastorePreferencesRxjava2 = "1.0.0"
 datastorePreferencesVersion = "1.0.0"
 datastoreVersion = "1.0.0"
+googleProtobufJavalite = "3.21.11"
 hiltAndroid = "2.51.1"
 hiltCompiler = "2.51.1"
 kotlin = "2.0.21"
@@ -27,9 +29,11 @@ lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
 composeBom = "2025.05.01"
 navigationCompose = "2.9.0"
+navigationFragmentKtx = "2.9.3"
 playServicesLocation = "21.3.0"
 protobufJavalite = "3.25.1"
 protobufJavaliteVersion = "3.19.4"
+protobufKotlinLite = "3.21.11"
 retrofit = "2.11.0"
 kotlinx-serialization-json = "1.5.1"
 okhttp = "4.12.0"
@@ -50,7 +54,10 @@ androidx-datastore-preferences-rxjava2 = { module = "androidx.datastore:datastor
 androidx-datastore-preferences-rxjava2-v100 = { module = "androidx.datastore:datastore-preferences-rxjava2", version.ref = "datastorePreferencesRxjava2" }
 androidx-datastore-preferences-v100 = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferencesVersion" }
 androidx-datastore-v100 = { module = "androidx.datastore:datastore", version.ref = "datastoreVersion" }
+androidx-datastore-v117 = { module = "androidx.datastore:datastore", version.ref = "androidxDatastore" }
 androidx-lifecycle-runtime-ktx-v270 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
@@ -86,6 +93,8 @@ lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufJavalite" }
 protobuf-javalite-v3194 = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufJavaliteVersion" }
+protobuf-javalite-v32111 = { module = "com.google.protobuf:protobuf-javalite", version.ref = "googleProtobufJavalite" }
+protobuf-kotlin-lite-v32111 = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
