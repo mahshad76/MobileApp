@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_nav_graph"
+    app:startDestination="@id/detailAFragment">
+
+    <fragment
+        android:id="@+id/detailAFragment"
+        android:name="com.mahshad.detail.DetailAFragment"
+        android:label="fragment_detail_a"
+        tools:layout="@layout/fragment_detail_a" />
+    <fragment
+        android:id="@+id/detailBFragment"
+        android:name="com.mahshad.detail.DetailBFragment"
+        android:label="fragment_detail_b"
+        tools:layout="@layout/fragment_detail_b" />
+</navigation>
