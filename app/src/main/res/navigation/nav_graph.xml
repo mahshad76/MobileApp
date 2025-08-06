@@ -8,7 +8,11 @@
         android:id="@+id/mainFragment"
         android:name="com.mahshad.mobileapp.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_home_graph"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <include app:graph="@navigation/home_nav_graph" />
     <include app:graph="@navigation/detail_nav_graph" />
 </navigation>

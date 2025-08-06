@@ -5,12 +5,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.mahshad.mobileapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mainBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainBinding.root)
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById
                 (R.id.app_fragment_container)
@@ -23,5 +26,6 @@ class MainActivity : AppCompatActivity() {
             )
             insets
         }
+        //NavHostController()
     }
 }
