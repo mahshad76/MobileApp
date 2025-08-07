@@ -9,7 +9,11 @@
         android:id="@+id/detailAFragment"
         android:name="com.mahshad.detail.DetailAFragment"
         android:label="fragment_detail_a"
-        tools:layout="@layout/fragment_detail_a" />
+        tools:layout="@layout/fragment_detail_a">
+        <action
+            android:id="@+id/from_detailAFragment_to_detailBFragment"
+            app:destination="@id/detailBFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailBFragment"
         android:name="com.mahshad.detail.DetailBFragment"

@@ -15,4 +15,10 @@
     </fragment>
     <include app:graph="@navigation/home_nav_graph" />
     <include app:graph="@navigation/detail_nav_graph" />
+    <action
+        android:id="@+id/to_detailA"
+        app:destination="@id/detailAFragment" />
+    <action
+        android:id="@+id/to_homeA"
+        app:destination="@id/homeAFragment" />
 </navigation>

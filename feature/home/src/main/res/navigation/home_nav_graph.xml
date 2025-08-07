@@ -9,7 +9,11 @@
         android:id="@+id/homeAFragment"
         android:name="com.mahshad.home.HomeAFragment"
         android:label="fragment_home_a"
-        tools:layout="@layout/fragment_home_a" />
+        tools:layout="@layout/fragment_home_a">
+        <action
+            android:id="@+id/from_homeAFragment_to_homeBFragment"
+            app:destination="@id/homeBFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeBFragment"
         android:name="com.mahshad.home.HomeBFragment"
