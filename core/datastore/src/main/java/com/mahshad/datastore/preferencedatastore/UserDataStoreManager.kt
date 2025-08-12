@@ -1,6 +1,6 @@
 package com.mahshad.datastore.preferencedatastore
 
-interface AppPreferencesRepository {
+interface UserDataStoreManager {
     suspend fun saveUserName(username: String)
     suspend fun savePassword(password: String)
 }
