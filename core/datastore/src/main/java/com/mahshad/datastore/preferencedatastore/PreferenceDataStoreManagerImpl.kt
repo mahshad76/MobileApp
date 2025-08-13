@@ -10,9 +10,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserDataStoreManagerImpl @Inject constructor(
+class PreferenceDataStoreManagerImpl @Inject constructor(
     private val preferencesDataStore: DataStore<Preferences>
-) : UserDataStoreManager {
+) : PreferenceDataStoreManager {
 
     private object PreferencesKeys {
         val USER_NAME = stringPreferencesKey("user_name")

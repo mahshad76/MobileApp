@@ -3,7 +3,7 @@ package com.mahshad.datastore.protodatastore
 import com.mahshad.core.datastore.UserProfile
 import kotlinx.coroutines.flow.Flow
 
-interface UserProfileRepository {
+interface ProtoDataStoreManager {
 
     /**
      * A [Flow] that emits the current [UserProfile] data whenever it changes.
