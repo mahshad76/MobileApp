@@ -35,7 +35,7 @@ dependencies {
     implementation(project(':core:network'))
     implementation(project(':core:model'))
     implementation(project(':core:threading'))
-    implementation(project(':core:datastore'))
+    //implementation(project(':core:datastore'))
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat

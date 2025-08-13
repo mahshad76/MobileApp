@@ -1,62 +1,57 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.protobuf' version '0.9.5'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    namespace 'com.mahshad.datastore'
-    compileSdk 35
+    namespace "com.mahshad.datastore"
+    compileSdk 34
 
     defaultConfig {
         minSdk 24
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        targetSdk 34
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+
+    // Add generated proto sources to Android's source sets
+    sourceSets {
+        main {
+            java.srcDir "$buildDir/generated/source/proto/main/java"
+        }
     }
-    kotlinOptions {
-        jvmTarget = '11'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.12"
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+//                kotlin {
+//                    option 'lite'
+//                }
+            }
+        }
     }
 }
 
 dependencies {
-
-    // Kotlin Coroutines
-    implementation libs.kotlinx.coroutines.core.v160
-    implementation libs.kotlinx.coroutines.android.v160
-
-    // di
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    //datastore
     implementation "androidx.datastore:datastore-preferences:1.1.7"
-    implementation "androidx.datastore:datastore:1.1.7"
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material
-    implementation(libs.androidx.lifecycle.runtime.ktx.v270)
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.espresso.core
+    implementation "androidx.datastore:datastore:1.0.0"
+    implementation "com.google.protobuf:protobuf-javalite:3.21.12"
+    //implementation "com.google.protobuf:protobuf-kotlinlite:3.21.12"
+    implementation "com.google.dagger:hilt-android:2.50"
+    kapt "com.google.dagger:hilt-android-compiler:2.50"
 }
-
-kapt {
-    correctErrorTypes = true
-}
-
-
