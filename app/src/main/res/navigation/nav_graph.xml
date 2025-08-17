@@ -3,16 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.mahshad.mobileapp.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment_to_home_graph"
-            app:destination="@id/mainFragment" />
-    </fragment>
+    app:startDestination="@id/home_nav_graph">
     <include app:graph="@navigation/home_nav_graph" />
     <include app:graph="@navigation/detail_nav_graph" />
     <action
