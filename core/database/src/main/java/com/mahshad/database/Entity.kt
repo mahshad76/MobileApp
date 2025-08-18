@@ -10,5 +10,5 @@ import com.mahshad.model.data.Data
 data class Entity(
     @PrimaryKey @ColumnInfo(name = "object_id") val id: String,
     @ColumnInfo(name = "object_name") val name: String,
-    @Embedded @ColumnInfo(name = "object_data") val data: Data?
+    @Embedded(prefix = "object_") val data: Data?
 )
