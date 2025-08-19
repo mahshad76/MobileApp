@@ -14,32 +14,34 @@ class PreferenceDataStoreManagerImpl @Inject constructor(
     private val preferencesDataStore: DataStore<Preferences>
 ) : PreferenceDataStoreManager {
 
-    private object PreferencesKeys {
+    companion object PreferencesKeys {
         val USER_NAME = stringPreferencesKey("user_name")
         val USER_PASSWORD = stringPreferencesKey("user_password")
     }
 
     override suspend fun saveUserName(username: String) {
         preferencesDataStore.edit { preferences ->
-            preferences[PreferencesKeys.USER_NAME] = username
+            preferences[USER_NAME] = username
         }
-
-        val userName: Flow<String?> =
-            preferencesDataStore.data
-                .map { preferences ->
-                    preferences[PreferencesKeys.USER_NAME]
-                }
     }
 
     override suspend fun savePassword(password: String) {
         preferencesDataStore.edit { preferences ->
-            preferences[PreferencesKeys.USER_PASSWORD] = password
+            preferences[USER_PASSWORD] = password
         }
+    }
 
-        val passWord: Flow<String?> =
-            preferencesDataStore.data
-                .map { preferences ->
-                    preferences[PreferencesKeys.USER_PASSWORD]
-                }
+    override fun getUsername(): Flow<String?> {
+        return preferencesDataStore.data
+            .map { preferences ->
+                preferences[USER_NAME]
+            }
+    }
+
+    override fun getPassword(): Flow<String?> {
+        return preferencesDataStore.data
+            .map { preferences ->
+                preferences[USER_PASSWORD]
+            }
     }
 }
