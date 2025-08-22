@@ -35,7 +35,6 @@ dependencies {
     implementation(project(':core:network'))
     implementation(project(':core:model'))
     implementation(project(':core:threading'))
-    //implementation(project(':core:datastore'))
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
@@ -50,7 +49,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.okhttp)
+    //retrofit
+    implementation(libs.retrofit)
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
