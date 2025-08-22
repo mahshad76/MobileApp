@@ -15,7 +15,7 @@ class DefaultObjectRepository @Inject constructor(
     private val apiService: ApiService,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ObjectRepository {
-    override suspend fun getObjects(): List<Object>? {
+    override suspend fun getObjects(): List<Object> {
         val a = apiService.getObjects()
         return withContext(ioDispatcher) {
             try {
@@ -31,7 +31,7 @@ class DefaultObjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun getObjectsById(ids: List<Int>): List<Object>? {
+    override suspend fun getObjectsById(ids: List<Int>): List<Object> {
         return withContext(ioDispatcher) {
             try {
                 return@withContext apiService.getObjectsById(ids)
@@ -45,7 +45,7 @@ class DefaultObjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun postAnObject(body: ObjectDto): Object? {
+    override suspend fun postAnObject(body: ObjectDto): Object {
         return withContext(ioDispatcher) {
             try {
                 return@withContext apiService.postAnObject(body).toObject()
@@ -56,7 +56,7 @@ class DefaultObjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun deleteAnObject(id: Int): ResponseBody? {
+    override suspend fun deleteAnObject(id: Int): ResponseBody {
         return withContext(ioDispatcher) {
             try {
                 return@withContext apiService.deleteAnObject(id)
@@ -67,7 +67,7 @@ class DefaultObjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun partialUpdate(id: Int, body: Map<String, Any>): Object? {
+    override suspend fun partialUpdate(id: Int, body: Map<String, Any>): Object {
         return withContext(ioDispatcher) {
             try {
                 return@withContext apiService.partialUpdate(id, body).toObject()
@@ -78,7 +78,7 @@ class DefaultObjectRepository @Inject constructor(
         }
     }
 
-    override suspend fun update(id: Int, body: ObjectDto): Object? {
+    override suspend fun update(id: Int, body: ObjectDto): Object {
         return withContext(ioDispatcher) {
             try {
                 return@withContext apiService.update(id, body).toObject()

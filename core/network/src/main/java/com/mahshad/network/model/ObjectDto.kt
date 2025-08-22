@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ObjectDto(
     @SerialName("id")
-    val id: String,
+    val id: String?,
     @SerialName("name")
-    val name: String,
+    val name: String?,
     @SerialName("data")
     val data: DataDto?,
 )
