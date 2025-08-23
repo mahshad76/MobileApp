@@ -6,16 +6,16 @@ import okhttp3.ResponseBody
 
 //TODO document for the interface
 interface ObjectRepository {
-    suspend fun getObjects(): List<Object>
+    suspend fun getObjects(): Result<List<Object>>
 
-    suspend fun getObjectsById(ids: List<Int>): List<Object>
+    suspend fun getObjectsById(ids: List<Int>): Result<List<Object>>
 
-    suspend fun postAnObject(body: ObjectDto): Object
+    suspend fun postAnObject(body: ObjectDto): Result<Object>
 
-    suspend fun deleteAnObject(id: Int): ResponseBody
+    suspend fun deleteAnObject(id: Int): Result<ResponseBody>
 
-    suspend fun partialUpdate(id: Int, body: Map<String, Any>): Object
+    suspend fun partialUpdate(id: Int, body: Map<String, Any>): Result<Object>
 
-    suspend fun update(id: Int, body: ObjectDto): Object
+    suspend fun update(id: Int, body: ObjectDto): Result<Object>
 }
 
