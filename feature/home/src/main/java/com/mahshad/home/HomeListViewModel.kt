@@ -1,4 +1,5 @@
 package com.mahshad.home
 
-class HomeListViewModel {
+@
+class HomeListViewModel  {
 }
