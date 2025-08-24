@@ -14,8 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeListViewModel @Inject constructor(private val objectRepository: ObjectRepository) :
     ViewModel() {
-    ///defining states as state flow or live data, call the repository functions, and set the value
-    ///of the states
     private val _objectsState: MutableLiveData<Result<List<Object>>?> =
         MutableLiveData(null)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
