@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.mahshad.home.databinding.FragmentHomeABinding
-import com.mahshad.repository.Result
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +15,7 @@ class HomeListFragment : Fragment() {
 
     private val myViewModel: HomeListViewModel by viewModels()
     private lateinit var homeListFragmentBinding: FragmentHomeABinding
-    private lateinit var textView: TextView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +29,15 @@ class HomeListFragment : Fragment() {
             inflater, container,
             false
         )
-        textView = homeListFragmentBinding.textView
+        recyclerView = homeListFragmentBinding.recyclerView
         myViewModel.updateObjectsList()
         myViewModel.objectState.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Successful -> textView.text = result.data.toString()
-                is Result.Error -> textView.text = result.error.toString()
-                is Result.Loading -> textView.text = "Loading"
-                null -> textView.text = "null"
-            }
+//            when (result) {
+//                is Result.Successful -> textView.text = result.data.toString()
+//                is Result.Error -> textView.text = result.error.toString()
+//                is Result.Loading -> textView.text = "Loading"
+//                null -> textView.text = "null"
+//            }
         }
         return homeListFragmentBinding.root
     }
