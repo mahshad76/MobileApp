@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#007BFF</color>
+    <color name="primaryDarkColor">#0056b3</color>
+    <color name="accentColor">#28a745</color>
+    <color name="backgroundColor">#F0F0F0</color>
+    <color name="cardColor">#FFFFFF</color>
+    <color name="ratingColor">#A0A0A0</color>
+    <color name="heartIconColor">#FF0000</color>
+</resources>
