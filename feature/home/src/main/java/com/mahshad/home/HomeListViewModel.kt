@@ -21,13 +21,10 @@ class HomeListViewModel @Inject constructor(private val objectRepository: Object
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
 
     fun updateObjectsList() {
+        _objectsState.value = Result.Loading
         viewModelScope.launch {
             val result = objectRepository.getObjects()
-            when (result) {
-                is Result.Error -> TODO()
-                is Result.Loading -> TODO()
-                is Result.Successful<*> -> TODO()
-            }
+            _objectsState.value = result
         }
     }
 }
