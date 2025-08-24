@@ -26,7 +26,7 @@
 
         <!-- Generation Badge -->
         <TextView
-            android:id="@+id/ratingTextView"
+            android:id="@+id/generationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
