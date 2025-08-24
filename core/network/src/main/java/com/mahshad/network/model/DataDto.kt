@@ -7,36 +7,36 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DataDto(
     @SerialName("Generation")
-    val generation: String?,
+    val generation: String? = null,
     @SerialName("Price")
-    val price: String?,
+    val price: String? = null,
     @SerialName("Capacity")
-    val capacity: String?,
+    val capacity: String? = null,
     @SerialName("Screen size")
-    val screenSize: Double?,
+    val screenSize: Double? = null,
     @SerialName("Color")
-    val color: String?,
+    val color: String? = null,
     @SerialName("Description")
-    val description: String?,
+    val description: String? = null,
     @SerialName("Strap Colour")
-    val strapColour: String?,
+    val strapColour: String? = null,
     @SerialName("Case Size")
-    val caseSize: String?,
-    val year: Long?,
+    val caseSize: String? = null,
+    val year: Long? = null,
     @SerialName("price")
-    val price2: Double?,
+    val price2: Double? = null,
     @SerialName("CPU model")
-    val cpuModel: String?,
+    val cpuModel: String? = null,
     @SerialName("Hard disk size")
-    val hardDiskSize: String?,
+    val hardDiskSize: String? = null,
     @SerialName("generation")
-    val generation2: String?,
+    val generation2: String? = null,
     @SerialName("color")
-    val color2: String?,
+    val color2: String? = null,
     @SerialName("capacity GB")
-    val capacityGb: Long?,
+    val capacityGb: Long? = null,
     @SerialName("capacity")
-    val capacity2: String?,
+    val capacity2: String? = null,
 )
 
 fun DataDto.toData() = Data(

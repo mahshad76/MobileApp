@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mahshad.home.databinding.FragmentHomeABinding
+import com.mahshad.repository.Result
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +31,15 @@ class HomeListFragment : Fragment() {
             false
         )
         textView = homeListFragmentBinding.textView
-        textView.text = "Hello world"
+        myViewModel.updateObjectsList()
+        myViewModel.objectState.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Successful -> textView.text = result.data.toString()
+                is Result.Error -> textView.text = result.error.toString()
+                is Result.Loading -> textView.text = "Loading"
+                null -> textView.text = "null"
+            }
+        }
         return homeListFragmentBinding.root
     }
 }
