@@ -40,7 +40,10 @@ data class DataDto(
 )
 
 fun DataDto.toData() = Data(
-    generation = this.generation,
+    generation = when (this.generation) {
+        null, "", " " -> "unknown"
+        else -> this.generation
+    },
     price = this.price,
     capacity = this.capacity,
     screenSize = this.screenSize,

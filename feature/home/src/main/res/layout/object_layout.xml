@@ -21,7 +21,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/favoriteButton" />
 
         <TextView
             android:id="@+id/generationTextView"
@@ -39,8 +39,8 @@
 
         <ImageView
             android:id="@+id/favoriteButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:contentDescription="Favorite button"
             android:src="@drawable/outline_heart_smile_24"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,10 +84,8 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="0dp"
             android:text="Add"
-            app:layout_constraintBottom_toBottomOf="@id/priceTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/priceTextView" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -17,5 +17,5 @@ data class ObjectDto(
 fun ObjectDto.toObject() = Object(
     id = this.id,
     name = this.name,
-    data = this.data?.toData()
+    data = this.data?.toData() ?: DataDto().toData()
 )
