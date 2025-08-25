@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,21 +11,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <!-- Product Image -->
         <ImageView
             android:id="@+id/productImageView"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:contentDescription="Product image"
             android:scaleType="centerCrop"
-            app:constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Generation Badge -->
         <TextView
             android:id="@+id/generationTextView"
             android:layout_width="wrap_content"
@@ -39,7 +37,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Favorite Button (Heart Icon) -->
         <ImageView
             android:id="@+id/favoriteButton"
             android:layout_width="24dp"
@@ -50,7 +47,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/ratingColor" />
 
-        <!-- Product Name -->
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="0dp"
@@ -62,7 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/productImageView" />
 
-        <!-- Product Description -->
         <TextView
             android:id="@+id/descriptionTextView"
             android:layout_width="0dp"
@@ -74,7 +69,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
-        <!-- Price and Add Button -->
         <TextView
             android:id="@+id/priceTextView"
             android:layout_width="wrap_content"
@@ -95,7 +89,5 @@
             app:layout_constraintBottom_toBottomOf="@id/priceTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/priceTextView" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

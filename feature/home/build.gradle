@@ -57,6 +57,14 @@ dependencies {
     ///recycler view
     implementation(libs.androidx.recyclerview.v132)
 
+    ///glide
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
+    ///layout dependencies
+    implementation (libs.androidx.constraintlayout.v214)
+    implementation (libs.androidx.cardview)
+
     implementation(project(':core:data'))
     implementation(project(':core:model'))
 }

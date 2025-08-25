@@ -31,14 +31,14 @@ class HomeListFragment : Fragment() {
         )
         recyclerView = homeListFragmentBinding.recyclerView
         myViewModel.updateObjectsList()
-        myViewModel.objectState.observe(viewLifecycleOwner) { result ->
-//            when (result) {
-//                is Result.Successful -> textView.text = result.data.toString()
-//                is Result.Error -> textView.text = result.error.toString()
-//                is Result.Loading -> textView.text = "Loading"
-//                null -> textView.text = "null"
-//            }
-        }
+//        myViewModel.objectState.observe(viewLifecycleOwner) { result ->
+////            when (result) {
+////                is Result.Successful -> textView.text = result.data.toString()
+////                is Result.Error -> textView.text = result.error.toString()
+////                is Result.Loading -> textView.text = "Loading"
+////                null -> textView.text = "null"
+////            }
+//        }
         return homeListFragmentBinding.root
     }
 }
