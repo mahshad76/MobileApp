@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/homeAFragment">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/homeAFragment"
+        android:id="@+id/home"
         android:name="com.mahshad.home.homelistfragment.HomeListFragment"
         android:label="fragment_home_a"
         tools:layout="@layout/fragment_home_a">
         <action
             android:id="@+id/from_homeAFragment_to_homeBFragment"
-            app:destination="@id/homeBFragment" />
+            app:destination="@id/search" />
     </fragment>
     <fragment
-        android:id="@+id/homeBFragment"
+        android:id="@+id/search"
         android:name="com.mahshad.home.homeBasketFragment.HomeBasketFragment"
         android:label="fragment_home_b"
         tools:layout="@layout/fragment_home_b" />
