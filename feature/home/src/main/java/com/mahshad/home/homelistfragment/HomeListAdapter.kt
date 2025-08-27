@@ -1,4 +1,4 @@
-package com.mahshad.home
+package com.mahshad.home.homelistfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

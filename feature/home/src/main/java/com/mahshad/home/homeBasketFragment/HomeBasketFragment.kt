@@ -1,12 +1,13 @@
-package com.mahshad.home
+package com.mahshad.home.homeBasketFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.mahshad.home.R
 
-class HomeBFragment : Fragment() {
+class HomeBasketFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

@@ -1,4 +1,4 @@
-package com.mahshad.home
+package com.mahshad.home.homelistfragment
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mahshad.home.homelistfragment.HomeListViewModel
 import com.mahshad.home.databinding.FragmentHomeABinding
 import com.mahshad.repository.Result
 import dagger.hilt.android.AndroidEntryPoint
