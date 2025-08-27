@@ -9,12 +9,13 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mahshad.home.homelistfragment.HomeListViewModel
 import com.mahshad.home.databinding.FragmentHomeABinding
 import com.mahshad.repository.Result
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeListFragment : Fragment() {
@@ -48,6 +49,12 @@ class HomeListFragment : Fragment() {
                     progressBar.isVisible = false
                     val adapter = HomeListAdapter(result.data)
                     recyclerView.adapter = adapter
+                    //myViewModel.addButtonClickListener(adapter.clicksFlow)
+                    lifecycleScope.launch {
+                        adapter.clicksFlow.collect { click ->
+                            myViewModel.addButtonClickListener(click)
+                        }
+                    }
                 }
 
                 is Result.Error -> {

@@ -1,5 +1,6 @@
 package com.mahshad.home.homelistfragment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,5 +25,10 @@ class HomeListViewModel @Inject constructor(private val objectRepository: Object
             val result = objectRepository.getObjects()
             _objectsState.value = result
         }
+    }
+
+    fun addButtonClickListener(clicks: Int) {
+
+        Log.d("TAG", "addButtonClickListener ${clicks}")
     }
 }
