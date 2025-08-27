@@ -27,8 +27,8 @@ class HomeListViewModel @Inject constructor(private val objectRepository: Object
         }
     }
 
-    fun addButtonClickListener(clicks: Int) {
+    fun addButtonClickListener(clickedObject: Object) {
 
-        Log.d("TAG", "addButtonClickListener ${clicks}")
+        Log.d("TAG", "addButtonClickListener ${clickedObject}")
     }
 }
