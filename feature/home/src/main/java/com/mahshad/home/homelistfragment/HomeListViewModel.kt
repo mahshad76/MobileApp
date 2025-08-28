@@ -33,8 +33,8 @@ class HomeListViewModel @Inject constructor(
 
     fun addButtonClickListener(clickedObject: Object) {
         Log.d("TAG", "addButtonClickListener ${clickedObject}")
-        viewModelScope.launch {
-            dataBaseRepository.insert(clickedObject)
-        }
+//        viewModelScope.launch {
+//            dataBaseRepository.insert(clickedObject)
+//        }
     }
 }

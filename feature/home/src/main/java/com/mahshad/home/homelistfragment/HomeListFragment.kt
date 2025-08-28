@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mahshad.home.databinding.FragmentHomeABinding
+import com.mahshad.model.data.Object
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,10 @@ class HomeListFragment : Fragment(), ClickListener {
     private var _homeListFragmentBinding: FragmentHomeABinding? = null
     private val homeListFragmentBinding: FragmentHomeABinding
         get() = _homeListFragmentBinding!!
+
+    private var _data: List<Object>? = null
+    private val data: List<Object>
+        get() = _data!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +46,9 @@ class HomeListFragment : Fragment(), ClickListener {
             when (result) {
                 is Result.Successful -> {
                     homeListFragmentBinding.loadingSpinner.isVisible = false
+                    _data = result.data
                     val adapter = HomeListAdapter(
-                        result.data,
+                        data,
                         ::addButtonIsClicked
                     )
                     homeListFragmentBinding.recyclerView.adapter = adapter
@@ -72,7 +78,6 @@ class HomeListFragment : Fragment(), ClickListener {
         _homeListFragmentBinding = null
     }
 
-    override fun addButtonIsClicked(clickPosition: Int) {
-        Log.d("TAG", "addButtonIsClicked ${clickPosition}")
-    }
+    override fun addButtonIsClicked(clickPosition: Int) =
+        myViewModel.addButtonClickListener(data[clickPosition])
 }
