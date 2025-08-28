@@ -1,11 +1,12 @@
 package com.mahshad.home.homeBasketFragment
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mahshad.home.databinding.FragmentHomeBBinding
 import com.mahshad.model.data.Object
 
-class HomeBasketAdapter(objects: List<Object>) : RecyclerView.Adapter<HomeBasketViewHolder>() {
+class HomeBasketAdapter(private val objects: List<Object>) :
+    RecyclerView.Adapter<HomeBasketAdapter.HomeBasketViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -13,18 +14,14 @@ class HomeBasketAdapter(objects: List<Object>) : RecyclerView.Adapter<HomeBasket
         TODO("Not yet implemented")
     }
 
-    override fun onBindViewHolder(
-        holder: HomeBasketViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: HomeBasketViewHolder, position: Int) {
         TODO("Not yet implemented")
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    override fun getItemCount() = objects.size
+
+    inner class HomeBasketViewHolder(view: FragmentHomeBBinding) :
+        RecyclerView.ViewHolder(view.root) {
+
     }
-}
-
-class HomeBasketViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
 }

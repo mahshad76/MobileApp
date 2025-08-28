@@ -24,6 +24,7 @@ class HomeListViewModel @Inject constructor(
 
     fun updateObjectsList() {
         _objectsState.value = Result.Loading
+        //TODO(exception handler and show in ui)
         viewModelScope.launch {
             val result = objectRepository.getObjects()
             _objectsState.value = result
