@@ -52,13 +52,6 @@ class HomeListFragment : Fragment(), ClickListener {
                         ::addButtonIsClicked
                     )
                     homeListFragmentBinding.recyclerView.adapter = adapter
-//                    lifecycleScope.launch {
-//                        adapter
-//                            .clicksFlow.throttleFirst(300L)
-//                            .collect { click ->
-//                                myViewModel.addButtonClickListener(result.data[click])
-//                            }
-//                    }
                 }
 
                 is Result.Error -> {

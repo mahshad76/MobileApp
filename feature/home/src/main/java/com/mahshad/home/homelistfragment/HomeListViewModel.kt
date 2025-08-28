@@ -10,6 +10,7 @@ import com.mahshad.repository.databaserepository.DataBaseRepository
 import com.mahshad.repository.objectrepository.ObjectRepository
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,9 +19,24 @@ class HomeListViewModel @Inject constructor(
     private val objectRepository: ObjectRepository,
     private val dataBaseRepository: DataBaseRepository
 ) : ViewModel() {
+
+//    init {
+//        viewModelScope.launch {
+//            _addClickState
+//                .filterNotNull()
+//                .throttleFirst(300L)
+//                .collect { clickedObject: Object ->
+//                    Log.d("TAG", "${clickedObject} is added to the basket db")
+//                    dataBaseRepository.insert(clickedObject)
+//                }
+//        }
+//    }
+
     private val _objectsState: MutableLiveData<Result<List<Object>>?> =
         MutableLiveData(null)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
+
+    private val _addClickState: MutableStateFlow<Object?> = MutableStateFlow(null)
 
     fun updateObjectsList() {
         _objectsState.value = Result.Loading
@@ -32,9 +48,10 @@ class HomeListViewModel @Inject constructor(
     }
 
     fun addButtonClickListener(clickedObject: Object) {
-        Log.d("TAG", "addButtonClickListener ${clickedObject}")
-//        viewModelScope.launch {
-//            dataBaseRepository.insert(clickedObject)
-//        }
+        _addClickState.value = clickedObject
+        Log.d("TAG", "addButtonClickListener: ${clickedObject}")
+        viewModelScope.launch {
+            dataBaseRepository.insert(clickedObject)
+        }
     }
 }

@@ -1,8 +1,9 @@
 package com.mahshad.home.homeBasketFragment
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mahshad.home.databinding.FragmentHomeBBinding
+import com.mahshad.home.databinding.BasketLayoutBinding
 import com.mahshad.model.data.Object
 
 class HomeBasketAdapter(private val objects: List<Object>) :
@@ -11,17 +12,26 @@ class HomeBasketAdapter(private val objects: List<Object>) :
         parent: ViewGroup,
         viewType: Int
     ): HomeBasketViewHolder {
-        TODO("Not yet implemented")
+        val binding = BasketLayoutBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return HomeBasketViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: HomeBasketViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding(objects[position])
     }
 
     override fun getItemCount() = objects.size
 
-    inner class HomeBasketViewHolder(view: FragmentHomeBBinding) :
+    inner class HomeBasketViewHolder(private val view: BasketLayoutBinding) :
         RecyclerView.ViewHolder(view.root) {
+
+        fun binding(item: Object) {
+            view.basketItemName.text = item.name
+        }
 
     }
 }
