@@ -5,4 +5,3 @@ data class Object(
     val name: String?,
     val data: Data?,
 )
-

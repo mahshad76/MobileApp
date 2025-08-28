@@ -1,5 +1,7 @@
 package com.mahshad.di
 
+import com.mahshad.repository.databaserepository.DataBaseRepository
+import com.mahshad.repository.databaserepository.DefaultDataBaseRepository
 import com.mahshad.repository.objectrepository.DefaultObjectRepository
 import com.mahshad.repository.objectrepository.ObjectRepository
 import dagger.Binds
@@ -15,7 +17,7 @@ abstract class DataModule {
     abstract fun bindObjectRepository(defaultObjectRepository: DefaultObjectRepository):
             ObjectRepository
 
-//    @Binds
-//    abstract fun bindDataBaseRepository(defaultDataBaseRepository: DefaultDataBaseRepository):
-//            DataBaseRepository
+    @Binds
+    abstract fun bindDataBaseRepository(defaultDataBaseRepository: DefaultDataBaseRepository):
+            DataBaseRepository
 }
