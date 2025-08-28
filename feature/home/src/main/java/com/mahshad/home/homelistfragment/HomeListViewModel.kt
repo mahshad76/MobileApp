@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mahshad.model.data.Object
+import com.mahshad.repository.databaserepository.DataBaseRepository
 import com.mahshad.repository.objectrepository.ObjectRepository
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,8 +14,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeListViewModel @Inject constructor(private val objectRepository: ObjectRepository) :
-    ViewModel() {
+class HomeListViewModel @Inject constructor(
+    private val objectRepository: ObjectRepository,
+    private val dataBaseRepository: DataBaseRepository
+) : ViewModel() {
     private val _objectsState: MutableLiveData<Result<List<Object>>?> =
         MutableLiveData(null)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
@@ -30,7 +33,7 @@ class HomeListViewModel @Inject constructor(private val objectRepository: Object
     fun addButtonClickListener(clickedObject: Object) {
         Log.d("TAG", "addButtonClickListener ${clickedObject}")
         viewModelScope.launch {
-
+            dataBaseRepository.insert(clickedObject)
         }
     }
 }
