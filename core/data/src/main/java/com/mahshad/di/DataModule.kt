@@ -1,7 +1,7 @@
 package com.mahshad.di
 
-import com.mahshad.repository.DefaultObjectRepository
-import com.mahshad.repository.ObjectRepository
+import com.mahshad.repository.objectrepository.DefaultObjectRepository
+import com.mahshad.repository.objectrepository.ObjectRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

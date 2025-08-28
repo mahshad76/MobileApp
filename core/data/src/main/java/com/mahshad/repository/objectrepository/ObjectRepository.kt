@@ -1,4 +1,4 @@
-package com.mahshad.repository
+package com.mahshad.repository.objectrepository
 
 import com.mahshad.model.data.Object
 import com.mahshad.network.model.ObjectDto
@@ -18,4 +18,3 @@ interface ObjectRepository {
 
     suspend fun update(id: Int, body: ObjectDto): Result<Object>
 }
-

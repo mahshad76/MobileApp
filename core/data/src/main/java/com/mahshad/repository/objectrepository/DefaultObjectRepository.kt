@@ -1,9 +1,11 @@
-package com.mahshad.repository
+package com.mahshad.repository.objectrepository
 
 import com.mahshad.model.data.Object
 import com.mahshad.network.ApiService
 import com.mahshad.network.model.ObjectDto
 import com.mahshad.network.model.toObject
+import com.mahshad.repository.objectrepository.ObjectRepository
+import com.mahshad.repository.objectrepository.Result
 import okhttp3.ResponseBody
 import retrofit2.Response
 import javax.inject.Inject
