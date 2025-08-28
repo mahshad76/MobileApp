@@ -5,10 +5,17 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.mahshad.model.data.Data
+import com.mahshad.model.data.Object
 
 @Entity(tableName = "Objects")
-data class Entity(
+data class ObjectEntity(
     @PrimaryKey @ColumnInfo(name = "object_id") val id: String,
     @ColumnInfo(name = "object_name") val name: String,
     @Embedded(prefix = "object_") val data: Data?
+)
+
+fun ObjectEntity.toObject() = Object(
+    name = this.name,
+    id = this.id,
+    data = this.data
 )

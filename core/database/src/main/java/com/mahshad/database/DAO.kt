@@ -10,19 +10,19 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(mobileObject: Entity)
+    suspend fun insert(mobileObject: ObjectEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(mobileObjects: List<Entity>)
+    suspend fun insertAll(mobileObjects: List<ObjectEntity>)
 
     @Query("select * from Objects")
-    fun getAll(): Flow<List<Entity>>
+    fun getAll(): Flow<List<ObjectEntity>>
 
     @Query("select * from Objects")
-    fun getAllLively(): LiveData<List<Entity>>
+    fun getAllLively(): LiveData<List<ObjectEntity>>
 
     @Query("select * from Objects where object_id=:mobileId")
-    suspend fun searchById(mobileId: Int): Entity
+    suspend fun searchById(mobileId: Int): ObjectEntity
 
     @Query("DELETE FROM Objects WHERE object_id = :mobileId")
     suspend fun delete(mobileId: Int)
