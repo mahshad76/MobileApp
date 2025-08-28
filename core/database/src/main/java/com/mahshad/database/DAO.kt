@@ -1,27 +1,28 @@
 package com.mahshad.database
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mahshad.model.data.Object
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface DAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(mobileObject: Object)
+    suspend fun insert(mobileObject: Entity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(mobileObjects: List<Object>)
+    suspend fun insertAll(mobileObjects: List<Entity>)
 
     @Query("select * from Objects")
-    fun getAll(): Flow<List<Object>>
+    fun getAll(): Flow<List<Entity>>
 
     @Query("select * from Objects")
-    fun getAllLively(): LiveData<List<Object>>
+    fun getAllLively(): LiveData<List<Entity>>
 
     @Query("select * from Objects where object_id=:mobileId")
-    suspend fun searchById(mobileId: Int): Object
+    suspend fun searchById(mobileId: Int): Entity
 
     @Query("DELETE FROM Objects WHERE object_id = :mobileId")
     suspend fun delete(mobileId: Int)
