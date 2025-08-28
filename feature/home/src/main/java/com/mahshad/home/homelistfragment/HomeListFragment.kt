@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mahshad.common.throttleFirst
 import com.mahshad.home.databinding.FragmentHomeABinding
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +51,11 @@ class HomeListFragment : Fragment() {
                     val adapter = HomeListAdapter(result.data)
                     recyclerView.adapter = adapter
                     lifecycleScope.launch {
-                        adapter.clicksFlow.collect { click ->
-                            myViewModel.addButtonClickListener(result.data[click])
-                        }
+                        adapter
+                            .clicksFlow.throttleFirst(300L)
+                            .collect { click ->
+                                myViewModel.addButtonClickListener(result.data[click])
+                            }
                     }
                 }
 
