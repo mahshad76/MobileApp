@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mahshad.home.R
+import androidx.recyclerview.widget.RecyclerView
+import com.mahshad.home.databinding.FragmentHomeBBinding
 
 class HomeBasketFragment : Fragment() {
+    private lateinit var fragmentHomeBBinding: FragmentHomeBBinding
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -16,9 +20,11 @@ class HomeBasketFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(
-            R.layout.fragment_home_b, container,
+        fragmentHomeBBinding = FragmentHomeBBinding.inflate(
+            inflater, container,
             false
         )
+        recyclerView = fragmentHomeBBinding.basketRecyclerView
+        return fragmentHomeBBinding.root
     }
 }
