@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahshad.home.databinding.FragmentHomeABinding
 import com.mahshad.model.data.Object
 import com.mahshad.repository.objectrepository.Result
@@ -38,9 +38,7 @@ class HomeListFragment : Fragment(), ClickListener {
             inflater, container,
             false
         )
-        val numberOfColumns = 2
-        val gridLayoutManager = GridLayoutManager(context, numberOfColumns)
-        homeListFragmentBinding.recyclerView.layoutManager = gridLayoutManager
+        homeListFragmentBinding.recyclerView.layoutManager = LinearLayoutManager(context)
         myViewModel.updateObjectsList()
         myViewModel.objectState.observe(viewLifecycleOwner) { result ->
             when (result) {
