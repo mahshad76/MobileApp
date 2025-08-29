@@ -27,4 +27,23 @@ class HomeBasketViewModel @Inject constructor(
                 }
         }
     }
+
+    private fun bookmarkDevice(id: String) {}
+
+    fun onEvent(event: HomeBasketUiEvent) {
+        when (event) {
+            HomeBasketUiEvent.GetDevices -> updateUiState()
+            is HomeBasketUiEvent.BookmarkDevice -> bookmarkDevice(event.id)
+        }
+    }
+}
+//sealed interface HomeBasketUiState {
+//    data object Intial: HomeBasketUiState
+//    data class Error(val message: String): HomeBasketUiState
+//    data class Success()
+//}
+
+sealed interface HomeBasketUiEvent {
+    data object GetDevices : HomeBasketUiEvent
+    data class BookmarkDevice(val id: String) : HomeBasketUiEvent
 }
