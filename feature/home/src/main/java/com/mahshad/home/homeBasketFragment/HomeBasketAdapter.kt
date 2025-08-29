@@ -1,5 +1,6 @@
 package com.mahshad.home.homeBasketFragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,10 @@ class HomeBasketAdapter(private val objects: List<Object>) :
         holder.binding(objects[position])
     }
 
-    override fun getItemCount() = objects.size
+    override fun getItemCount(): Int {
+        Log.d("TAG", "getItemCount:${objects.size} ")
+        return objects.size
+    }
 
     inner class HomeBasketViewHolder(private val view: BasketLayoutBinding) :
         RecyclerView.ViewHolder(view.root) {
