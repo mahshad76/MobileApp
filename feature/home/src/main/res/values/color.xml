@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primaryColor">#5775CD</color>
+    <color name="button_transparent_blue">#617ED2</color>
     <color name="primaryDarkColor">#0056b3</color>
     <color name="accentColor">#28a745</color>
     <color name="backgroundColor">#F0F0F0</color>
     <color name="cardColor">#F4F8FB</color>
     <color name="ratingColor">#A0A0A0</color>
     <color name="heartIconColor">#FF0000</color>
-    <color name="fontColor">#0B1527</color>
+    <color name="fontColor">#FFFFFF</color>
     <color name="spacerColor">#FFFFFF</color>
-    <color name="priceTextColor">#219653</color>
 </resources>
