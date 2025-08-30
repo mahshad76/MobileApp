@@ -1,10 +1,10 @@
 package com.mahshad.home.homelistfragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mahshad.common.throttleFirst
 import com.mahshad.model.data.Object
 import com.mahshad.repository.databaserepository.BasketRepository
 import com.mahshad.repository.objectrepository.DeviceRepository
@@ -19,24 +19,23 @@ class DevicesListViewModel @Inject constructor(
     private val deviceRepository: DeviceRepository,
     private val basketRepository: BasketRepository
 ) : ViewModel() {
+    private val _clickState: MutableStateFlow<Object?> = MutableStateFlow(null)
 
-//    init {
-//        viewModelScope.launch {
-//            _addClickState
-//                .filterNotNull()
-//                .throttleFirst(300L)
-//                .collect { clickedObject: Object ->
-//                    Log.d("TAG", "${clickedObject} is added to the basket db")
-//                    dataBaseRepository.insert(clickedObject)
-//                }
-//        }
-//    }
+    init {
+        viewModelScope.launch {
+            _clickState
+                .throttleFirst(300L)
+                .collect { clickedObject ->
+                    clickedObject?.let {
+                        basketRepository.insert(it)
+                    }
+                }
+        }
+    }
 
     private val _objectsState: MutableLiveData<Result<List<Object>>?> =
         MutableLiveData(null)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
-
-    private val _addClickState: MutableStateFlow<Object?> = MutableStateFlow(null)
 
     fun updateObjectsList() {
         _objectsState.value = Result.Loading
@@ -48,10 +47,6 @@ class DevicesListViewModel @Inject constructor(
     }
 
     fun addButtonClickListener(clickedObject: Object) {
-        _addClickState.value = clickedObject
-        Log.d("TAG", "addButtonClickListener: ${clickedObject}")
-        viewModelScope.launch {
-            basketRepository.insert(clickedObject)
-        }
+        _clickState.value = clickedObject
     }
 }
