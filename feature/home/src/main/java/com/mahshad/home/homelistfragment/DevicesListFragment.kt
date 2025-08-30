@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +44,7 @@ class DevicesListFragment : Fragment(), ClickListener {
         myViewModel.objectState.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Successful -> {
-                    homeListFragmentBinding.loadingSpinner.isVisible = false
+                    homeListFragmentBinding.loadingSpinner.visibility = GONE
                     _data = result.data
                     val adapter = DevicesListAdapter(
                         data,
@@ -53,11 +54,11 @@ class DevicesListFragment : Fragment(), ClickListener {
                 }
 
                 is Result.Error -> {
-                    homeListFragmentBinding.loadingSpinner.isVisible = false
+                    homeListFragmentBinding.loadingSpinner.visibility = GONE
                     Log.d("TAG", "error: ${result.error} ")
                 }
 
-                is Result.Loading -> homeListFragmentBinding.loadingSpinner.isVisible = true
+                is Result.Loading -> homeListFragmentBinding.loadingSpinner.visibility = VISIBLE
                 null -> Log.d("TAG", "onCreateView:null ")
             }
         }
