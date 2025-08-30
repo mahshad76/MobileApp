@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mahshad.model.data.Object
-import com.mahshad.repository.databaserepository.DataBaseRepository
-import com.mahshad.repository.objectrepository.ObjectRepository
+import com.mahshad.repository.databaserepository.BasketRepository
+import com.mahshad.repository.objectrepository.DeviceRepository
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,9 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeListViewModel @Inject constructor(
-    private val objectRepository: ObjectRepository,
-    private val dataBaseRepository: DataBaseRepository
+class DevicesListViewModel @Inject constructor(
+    private val deviceRepository: DeviceRepository,
+    private val basketRepository: BasketRepository
 ) : ViewModel() {
 
 //    init {
@@ -42,7 +42,7 @@ class HomeListViewModel @Inject constructor(
         _objectsState.value = Result.Loading
         //TODO(exception handler and show in ui)
         viewModelScope.launch {
-            val result = objectRepository.getObjects()
+            val result = deviceRepository.getObjects()
             _objectsState.value = result
         }
     }
@@ -51,7 +51,7 @@ class HomeListViewModel @Inject constructor(
         _addClickState.value = clickedObject
         Log.d("TAG", "addButtonClickListener: ${clickedObject}")
         viewModelScope.launch {
-            dataBaseRepository.insert(clickedObject)
+            basketRepository.insert(clickedObject)
         }
     }
 }

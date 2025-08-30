@@ -1,9 +1,9 @@
 package com.mahshad.di
 
-import com.mahshad.repository.databaserepository.DataBaseRepository
-import com.mahshad.repository.databaserepository.DefaultDataBaseRepository
-import com.mahshad.repository.objectrepository.DefaultObjectRepository
-import com.mahshad.repository.objectrepository.ObjectRepository
+import com.mahshad.repository.databaserepository.BasketRepository
+import com.mahshad.repository.databaserepository.DefaultBasketRepository
+import com.mahshad.repository.objectrepository.DefaultDeviceRepository
+import com.mahshad.repository.objectrepository.DeviceRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,10 +14,10 @@ import dagger.hilt.components.SingletonComponent
 @Module
 abstract class DataModule {
     @Binds
-    abstract fun bindObjectRepository(defaultObjectRepository: DefaultObjectRepository):
-            ObjectRepository
+    abstract fun bindObjectRepository(defaultObjectRepository: DefaultDeviceRepository):
+            DeviceRepository
 
     @Binds
-    abstract fun bindDataBaseRepository(defaultDataBaseRepository: DefaultDataBaseRepository):
-            DataBaseRepository
+    abstract fun bindDataBaseRepository(defaultDataBaseRepository: DefaultBasketRepository):
+            BasketRepository
 }

@@ -4,8 +4,6 @@ import com.mahshad.model.data.Object
 import com.mahshad.network.ApiService
 import com.mahshad.network.model.ObjectDto
 import com.mahshad.network.model.toObject
-import com.mahshad.repository.objectrepository.ObjectRepository
-import com.mahshad.repository.objectrepository.Result
 import okhttp3.ResponseBody
 import retrofit2.Response
 import javax.inject.Inject
@@ -29,9 +27,9 @@ fun <T, K> assessResponse(response: Response<T?>, operation: (T) -> K): Result<K
         )
     }
 
-class DefaultObjectRepository @Inject constructor(
+class DefaultDeviceRepository @Inject constructor(
     private val apiService: ApiService
-) : ObjectRepository {
+) : DeviceRepository {
     override suspend fun getObjects(): Result<List<Object>> {
         val response = apiService.getObjects()
         return assessResponse(response, { input: List<ObjectDto> ->

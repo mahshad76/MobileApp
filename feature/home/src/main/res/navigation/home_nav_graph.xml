@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.mahshad.home.homelistfragment.HomeListFragment"
+        android:name="com.mahshad.home.homelistfragment.DevicesListFragment"
         android:label="fragment_home_a"
         tools:layout="@layout/fragment_home_a">
         <action

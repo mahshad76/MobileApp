@@ -15,9 +15,9 @@ import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeListFragment : Fragment(), ClickListener {
+class DevicesListFragment : Fragment(), ClickListener {
 
-    private val myViewModel: HomeListViewModel by viewModels()
+    private val myViewModel: DevicesListViewModel by viewModels()
     private var _homeListFragmentBinding: FragmentHomeABinding? = null
     private val homeListFragmentBinding: FragmentHomeABinding
         get() = _homeListFragmentBinding!!
@@ -45,7 +45,7 @@ class HomeListFragment : Fragment(), ClickListener {
                 is Result.Successful -> {
                     homeListFragmentBinding.loadingSpinner.isVisible = false
                     _data = result.data
-                    val adapter = HomeListAdapter(
+                    val adapter = DevicesListAdapter(
                         data,
                         ::addButtonIsClicked
                     )

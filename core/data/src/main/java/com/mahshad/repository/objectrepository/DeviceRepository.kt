@@ -5,7 +5,7 @@ import com.mahshad.network.model.ObjectDto
 import okhttp3.ResponseBody
 
 //TODO document for the interface
-interface ObjectRepository {
+interface DeviceRepository {
     suspend fun getObjects(): Result<List<Object>>
 
     suspend fun getObjectsById(ids: List<Int>): Result<List<Object>>

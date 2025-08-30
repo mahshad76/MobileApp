@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mahshad.home.databinding.ObjectLayoutBinding
 import com.mahshad.model.data.Object
 
-class HomeListAdapter(
+class DevicesListAdapter(
     private val objectsList: List<Object>,
     private val clickListener: (Int) -> Unit
 ) :
-    RecyclerView.Adapter<HomeListAdapter.HomeListViewHolder>() {
+    RecyclerView.Adapter<DevicesListAdapter.HomeListViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

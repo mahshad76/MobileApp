@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-class DefaultDataBaseRepository @Inject constructor(
+class DefaultBasketRepository @Inject constructor(
     private val dao: DAO
-) : DataBaseRepository {
+) : BasketRepository {
     override suspend fun insert(mobileObject: Object) {
         val objectEntity = ObjectEntity(
             name = mobileObject.name ?: " ",
