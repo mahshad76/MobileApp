@@ -2,16 +2,17 @@ package com.mahshad.home.homeBasketFragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahshad.home.databinding.FragmentHomeBBinding
-import com.mahshad.model.data.Object
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,11 +47,27 @@ class HomeBasketFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             ///TODO(use diffutils to avoid recreation of the adapter each time the flow emits a list)
-            homeBasketViewModel.uiState.collect { objectsBasket: List<Object>? ->
-                objectsBasket?.let {
-                    val adapter = HomeBasketAdapter(objectsBasket)
-                    fragmentHomeBBinding?.basketRecyclerView?.adapter = adapter
-                } ?: Log.d("TAG", "ObjectsBasket is null")
+            homeBasketViewModel.uiState.collect { objectsBasket: HomeBasketUiEvent ->
+                when (objectsBasket) {
+                    is HomeBasketUiEvent.Error -> {
+                        fragmentHomeBBinding?.progressBar?.visibility =
+                            GONE
+                        Toast.makeText(
+                            context,
+                            objectsBasket.e.toString(), Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    is HomeBasketUiEvent.Loading -> fragmentHomeBBinding?.progressBar?.visibility =
+                        VISIBLE
+
+                    is HomeBasketUiEvent.Successful -> {
+                        fragmentHomeBBinding?.progressBar?.visibility =
+                            GONE
+                        val adapter = HomeBasketAdapter(objectsBasket.devices)
+                        fragmentHomeBBinding?.basketRecyclerView?.adapter = adapter
+                    }
+                }
             }
         }
         return fragmentHomeBBinding?.root
