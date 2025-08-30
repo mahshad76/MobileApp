@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -15,35 +16,26 @@ class HomeBasketViewModel @Inject constructor(
     private val basketRepository:
     BasketRepository
 ) : ViewModel() {
-    private val _uiState: MutableStateFlow<List<Object>?> = MutableStateFlow(null)
-    val uiState: StateFlow<List<Object>?> = _uiState
+    private val _uiState: MutableStateFlow<HomeBasketUiEvent> =
+        MutableStateFlow(HomeBasketUiEvent.Loading)
+    val uiState: StateFlow<HomeBasketUiEvent> = _uiState
 
     fun updateUiState() {
         viewModelScope.launch {
             basketRepository
                 .selectAll()
+                .catch { e: Throwable ->
+                    _uiState.value = HomeBasketUiEvent.Error(e)
+                }
                 .collect { basketObjects: List<Object> ->
-                    _uiState.value = basketObjects
+                    _uiState.value = HomeBasketUiEvent.Successful(basketObjects)
                 }
         }
     }
-
-    private fun bookmarkDevice(id: String) {}
-
-    fun onEvent(event: HomeBasketUiEvent) {
-        when (event) {
-            HomeBasketUiEvent.GetDevices -> updateUiState()
-            is HomeBasketUiEvent.BookmarkDevice -> bookmarkDevice(event.id)
-        }
-    }
 }
-//sealed interface HomeBasketUiState {
-//    data object Intial: HomeBasketUiState
-//    data class Error(val message: String): HomeBasketUiState
-//    data class Success()
-//}
 
 sealed interface HomeBasketUiEvent {
-    data object GetDevices : HomeBasketUiEvent
-    data class BookmarkDevice(val id: String) : HomeBasketUiEvent
+    data class Successful(val devices: List<Object>) : HomeBasketUiEvent
+    data class Error(val e: Throwable) : HomeBasketUiEvent
+    data object Loading : HomeBasketUiEvent
 }
