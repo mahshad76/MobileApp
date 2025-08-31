@@ -11,4 +11,5 @@
     <color name="fontColor">#FFFFFF</color>
     <color name="spacerColor">#FFFFFF</color>
     <color name="basketCardColor">#F4F8FB</color>
+    <color name="secondaryColor">#9094B8</color>
 </resources>

@@ -34,7 +34,9 @@ class HomeBasketAdapter(private val objects: List<Object>) :
         RecyclerView.ViewHolder(view.root) {
 
         fun binding(item: Object) {
-            view.basketItemName.text = item.name
+            view.deviceName.text = item.name
+            view.devicePrice.text = item.data?.price
+            view.deviceDescription.text = item.data?.description
         }
 
     }
