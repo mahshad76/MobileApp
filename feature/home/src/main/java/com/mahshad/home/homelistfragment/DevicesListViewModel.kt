@@ -10,6 +10,7 @@ import com.mahshad.repository.databaserepository.BasketRepository
 import com.mahshad.repository.objectrepository.DeviceRepository
 import com.mahshad.repository.objectrepository.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,10 +38,13 @@ class DevicesListViewModel @Inject constructor(
         MutableLiveData(null)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
 
+    val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        _objectsState.value = Result.Error(throwable as Exception)
+    }
+
     fun updateObjectsList() {
         _objectsState.value = Result.Loading
-        //TODO(exception handler and show in ui)
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineExceptionHandler) {
             val result = deviceRepository.getObjects()
             _objectsState.value = result
         }
