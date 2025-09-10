@@ -1,7 +1,4 @@
-package com.mahshad.repository.databaserepository
-
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.mahshad.database.DAO
 import com.mahshad.database.ObjectEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,46 +6,41 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class FakeDAO : DAO {
-    val listOfObjects: MutableList<ObjectEntity> =
-        emptyList<ObjectEntity>() as MutableList<ObjectEntity>
-    val _liveDataOfObjects: MutableLiveData<List<ObjectEntity>> = MutableLiveData(listOfObjects)
-    val liveDataOfObjects: LiveData<List<ObjectEntity>> = _liveDataOfObjects
-    val _flowOfObjects: MutableStateFlow<List<ObjectEntity>> = MutableStateFlow(listOfObjects)
+    private val listOfObjects = mutableListOf<ObjectEntity>()
+    private val _flowOfObjects = MutableStateFlow(emptyList<ObjectEntity>())
     val flowOfObjects: StateFlow<List<ObjectEntity>> = _flowOfObjects
 
-    fun refreshReactiveStreams() {
-        _flowOfObjects.value = listOfObjects
-        _liveDataOfObjects.postValue(listOfObjects)
+    private fun refreshFlow() {
+        _flowOfObjects.value = listOfObjects.toList()
     }
 
     override suspend fun insert(mobileObject: ObjectEntity) {
         listOfObjects.add(mobileObject)
-        refreshReactiveStreams()
+        refreshFlow()
     }
 
     override suspend fun insertAll(mobileObjects: List<ObjectEntity>) {
         listOfObjects.addAll(mobileObjects)
-        refreshReactiveStreams()
+        refreshFlow()
     }
 
-    override fun getAll(): Flow<List<ObjectEntity>> {
-        return flowOfObjects
-    }
+    override fun getAll(): Flow<List<ObjectEntity>> = flowOfObjects
 
-    override fun getAllLively(): LiveData<List<ObjectEntity>> {
-        return liveDataOfObjects
-    }
-
-    override suspend fun searchById(mobileId: Int): ObjectEntity {
-        return listOfObjects.first { it.id.toInt() == mobileId }
-    }
+    override suspend fun searchById(mobileId: Int): ObjectEntity =
+        listOfObjects.first { it.id.toInt() == mobileId }
 
     override suspend fun delete(mobileId: Int) {
         listOfObjects.removeIf { it.id.toInt() == mobileId }
-        refreshReactiveStreams()
+        refreshFlow()
     }
 
     override suspend fun deleteAll() {
         listOfObjects.clear()
+        refreshFlow()
+    }
+
+    // if your DAO interface requires this:
+    override fun getAllLively(): LiveData<List<ObjectEntity>> {
+        throw UnsupportedOperationException("Not needed for repository tests")
     }
 }
