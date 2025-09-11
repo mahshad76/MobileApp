@@ -12,7 +12,15 @@ data class ObjectDto(
     val name: String?,
     @SerialName("data")
     val data: DataDto?,
-)
+) {
+    companion object {
+        val DEFAULT = ObjectDto(
+            "1",
+            "galaxy",
+            DataDto.DEFAULT
+        )
+    }
+}
 
 fun ObjectDto.toObject() = Object(
     id = this.id,

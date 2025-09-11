@@ -17,21 +17,21 @@ interface ApiService {
     suspend fun getObjects(): Response<List<ObjectDto>?>
 
     @GET("/objects")
-    suspend fun getObjectsById(@Query("id") ids: List<Int>): Response<List<ObjectDto>?>
+    suspend fun getObjectsById(@Query("id") ids: List<String>): Response<List<ObjectDto>?>
 
     @POST("/objects")
     suspend fun postAnObject(@Body body: ObjectDto): Response<ObjectDto?>
 
     @DELETE("/objects/{id}")
-    suspend fun deleteAnObject(@Path("id") id: Int): Response<ResponseBody?>
+    suspend fun deleteAnObject(@Path("id") id: String): Response<ResponseBody?>
 
     @PATCH("/objects/{id}")
     suspend fun partialUpdate(
-        @Path("id") id: Int,
+        @Path("id") id: String,
         @Body body: Map<String, Any>
     ): Response<ObjectDto?>
 
     @PUT("/objects/{id}")
-    suspend fun update(@Path("id") id: Int, @Body body: ObjectDto): Response<ObjectDto?>
+    suspend fun update(@Path("id") id: String, @Body body: ObjectDto): Response<ObjectDto?>
 
 }

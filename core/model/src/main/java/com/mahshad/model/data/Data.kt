@@ -17,4 +17,25 @@ data class Data(
     val color2: String?,
     val capacityGb: Long?,
     val capacity2: String?,
-)
+) {
+    companion object {
+        val DEFAULT = Data(
+            "third",
+            "700",
+            "20GB",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
+    }
+}

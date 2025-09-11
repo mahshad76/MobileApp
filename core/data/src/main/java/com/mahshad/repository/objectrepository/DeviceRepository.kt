@@ -8,13 +8,13 @@ import okhttp3.ResponseBody
 interface DeviceRepository {
     suspend fun getObjects(): Result<List<Object>>
 
-    suspend fun getObjectsById(ids: List<Int>): Result<List<Object>>
+    suspend fun getObjectsById(ids: List<String>): Result<List<Object>>
 
     suspend fun postAnObject(body: ObjectDto): Result<Object>
 
-    suspend fun deleteAnObject(id: Int): Result<ResponseBody>
+    suspend fun deleteAnObject(id: String): Result<ResponseBody>
 
-    suspend fun partialUpdate(id: Int, body: Map<String, Any>): Result<Object>
+    suspend fun partialUpdate(id: String, body: Map<String, Any>): Result<Object>
 
-    suspend fun update(id: Int, body: ObjectDto): Result<Object>
+    suspend fun update(id: String, body: ObjectDto): Result<Object>
 }

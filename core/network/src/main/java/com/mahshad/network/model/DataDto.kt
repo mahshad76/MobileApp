@@ -37,7 +37,28 @@ data class DataDto(
     val capacityGb: Long? = null,
     @SerialName("capacity")
     val capacity2: String? = null,
-)
+) {
+    companion object {
+        val DEFAULT = DataDto(
+            "third",
+            "700",
+            "20GB",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
+    }
+}
 
 fun DataDto.toData() = Data(
     generation = this.generation,

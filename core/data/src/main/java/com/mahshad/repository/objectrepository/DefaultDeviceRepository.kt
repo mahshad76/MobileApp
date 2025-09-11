@@ -39,7 +39,7 @@ class DefaultDeviceRepository @Inject constructor(
         })
     }
 
-    override suspend fun getObjectsById(ids: List<Int>): Result<List<Object>> {
+    override suspend fun getObjectsById(ids: List<String>): Result<List<Object>> {
         val response = apiService.getObjectsById(ids)
         return assessResponse(response, { input: List<ObjectDto> ->
             input.map { objectDto ->
@@ -53,13 +53,13 @@ class DefaultDeviceRepository @Inject constructor(
         return assessResponse(response, { input: ObjectDto -> input.toObject() })
     }
 
-    override suspend fun deleteAnObject(id: Int): Result<ResponseBody> {
+    override suspend fun deleteAnObject(id: String): Result<ResponseBody> {
         val response = apiService.deleteAnObject(id)
         return assessResponse(response, { it })
     }
 
     override suspend fun partialUpdate(
-        id: Int,
+        id: String,
         body: Map<String, Any>
     ): Result<Object> {
         val response = apiService.partialUpdate(id, body)
@@ -67,7 +67,7 @@ class DefaultDeviceRepository @Inject constructor(
     }
 
     override suspend fun update(
-        id: Int,
+        id: String,
         body: ObjectDto
     ): Result<Object> {
         val response = apiService.update(id, body)

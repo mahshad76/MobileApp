@@ -8,7 +8,6 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
 class DefaultBasketRepository @Inject constructor(
     private val dao: DAO
 ) : BasketRepository {

@@ -8,18 +8,18 @@ class RetrofitNetwork @Inject constructor(private val apiService: ApiService) : 
     override suspend fun getObjects() =
         apiService.getObjects()
 
-    override suspend fun getObjectsById(ids: List<Int>) =
+    override suspend fun getObjectsById(ids: List<String>) =
         apiService.getObjectsById(ids)
 
     override suspend fun postAnObject(body: ObjectDto) =
         apiService.postAnObject(body)
 
-    override suspend fun deleteAnObject(id: Int) =
+    override suspend fun deleteAnObject(id: String) =
         apiService.deleteAnObject(id)
 
-    override suspend fun partialUpdate(id: Int, body: Map<String, Any>) =
+    override suspend fun partialUpdate(id: String, body: Map<String, Any>) =
         apiService.partialUpdate(id, body)
 
-    override suspend fun update(id: Int, body: ObjectDto) =
+    override suspend fun update(id: String, body: ObjectDto) =
         apiService.update(id, body)
 }

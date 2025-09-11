@@ -3,7 +3,6 @@ package com.mahshad.repository.databaserepository
 import FakeDAO
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mahshad.database.ObjectEntity
-import com.mahshad.model.data.Data
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
@@ -20,26 +19,7 @@ class DefaultBasketRepositoryTest() {
     fun setup() {
         fakeDao = FakeDAO()
         val fakeObjects = mutableListOf(
-            ObjectEntity(
-                "1", "galaxy", Data(
-                    "first",
-                    "700",
-                    "20GB",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                )
-            )
+            ObjectEntity.DEFAULT
         )
         runBlocking {
             fakeDao.insertAll(fakeObjects)
@@ -51,6 +31,7 @@ class DefaultBasketRepositoryTest() {
         runBlocking {
             val objects = fakeDao.getAll().first()
             assertEquals(1, objects.size)
+            assertEquals("galaxy", objects[0].name)
         }
     }
 }
