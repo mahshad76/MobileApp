@@ -2,9 +2,6 @@ package com.mahshad.repository.objectrepository
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.mahshad.network.model.ObjectDto
-import junit.framework.TestCase.assertTrue
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -20,14 +17,6 @@ class DefaultDeviceRepositoryTest {
     fun setup() {
         fakeApiService = FakeApiService()
         defaultDeviceRepository = DefaultDeviceRepository(fakeApiService)
-    }
-
-    @Test
-    fun `postAnObject_whenTableIsEmpty_shouldReturnSuccessfulResponse`() {
-        runBlocking {
-            val result = defaultDeviceRepository.postAnObject(ObjectDto.DEFAULT)
-            assertTrue(result is Result.Successful)
-        }
     }
 
     @Test

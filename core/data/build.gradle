@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation libs.firebase.appdistribution.gradle
     implementation libs.androidx.junit.ktx
+    implementation libs.room.ktx
     kapt(libs.hilt.compiler)
 
     //coroutines
@@ -69,6 +70,8 @@ dependencies {
     testImplementation libs.robolectric
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.truth)
+    testImplementation(libs.androidx.room.testing)
+    testImplementation(libs.robolectric)
 
     implementation(project(':core:network'))
     implementation(project(':core:model'))
