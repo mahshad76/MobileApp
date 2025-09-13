@@ -8,25 +8,6 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import javax.inject.Inject
 
-fun <T, K> assessResponse(response: Response<T?>, operation: (T) -> K): Result<K> =
-    if (response.isSuccessful) {
-        response.body()?.let { body ->
-            try {
-                val transformedData = operation(body)
-                Result.Successful(transformedData)
-            } catch (e: Exception) {
-                Result.Error(e)
-            }
-        } ?: Result.Error(Exception("Response body is null"))
-    } else {
-        val errorBody = response.errorBody()?.string()
-        Result.Error(
-            Exception(
-                "API call failed with code: ${response.code()}, error: $errorBody"
-            )
-        )
-    }
-
 class DefaultDeviceRepository @Inject constructor(
     private val apiService: ApiService
 ) : DeviceRepository {
@@ -74,3 +55,22 @@ class DefaultDeviceRepository @Inject constructor(
         return assessResponse(response, { input: ObjectDto -> input.toObject() })
     }
 }
+
+fun <T, K> assessResponse(response: Response<T?>, operation: (T) -> K): Result<K> =
+    if (response.isSuccessful) {
+        response.body()?.let { body ->
+            try {
+                val transformedData = operation(body)
+                Result.Successful(transformedData)
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
+        } ?: Result.Error(Exception("Response body is null"))
+    } else {
+        val errorBody = response.errorBody()?.string()
+        Result.Error(
+            Exception(
+                "API call failed with code: ${response.code()}, error: $errorBody"
+            )
+        )
+    }

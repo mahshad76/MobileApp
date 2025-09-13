@@ -41,10 +41,6 @@ android {
 }
 
 dependencies {
-    implementation(project(':core:network'))
-    implementation(project(':core:model'))
-    implementation(project(':core:threading'))
-
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
@@ -62,19 +58,22 @@ dependencies {
     //retrofit
     implementation(libs.retrofit)
 
-    implementation(project(':core:database'))
-
     ///junit test
-    testImplementation (libs.junit.jupiter.api)
-    testRuntimeOnly (libs.junit.jupiter.engine)
-
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
-    testImplementation "org.jetbrains.kotlin:kotlin-test:2.0.21"
-    testImplementation "androidx.arch.core:core-testing:2.2.0"
-    testImplementation "org.robolectric:robolectric:4.12.1"
+    testImplementation libs.kotlin.test
+    testImplementation libs.androidx.core.testing
+    testImplementation libs.robolectric
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
 
+    implementation(project(':core:network'))
+    implementation(project(':core:model'))
+    implementation(project(':core:threading'))
+    implementation(project(':core:database'))
 }
 
 kapt {

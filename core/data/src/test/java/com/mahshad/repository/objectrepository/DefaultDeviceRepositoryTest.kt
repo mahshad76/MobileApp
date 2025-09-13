@@ -1,13 +1,14 @@
 package com.mahshad.repository.objectrepository
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth.assertThat
 import com.mahshad.network.model.ObjectDto
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
-import kotlin.test.assertEquals
 
 
 @RunWith(AndroidJUnit4::class)
@@ -17,7 +18,7 @@ class DefaultDeviceRepositoryTest {
 
     @BeforeEach
     fun setup() {
-        fakeApiService = FakeApiService(shouldReturnError = false)
+        fakeApiService = FakeApiService()
         defaultDeviceRepository = DefaultDeviceRepository(fakeApiService)
     }
 
@@ -30,32 +31,31 @@ class DefaultDeviceRepositoryTest {
     }
 
     @Test
-    fun `getObjects_whenTableIsFull_shouldReturnSuccessfulResponse`() {
-        runBlocking {
+    fun `getObjects returns successful result on API success`() {
+        runTest {
             val result = defaultDeviceRepository.getObjects()
-            if (result is Result.Successful) {
-                assertEquals(result.data[0].name, "galaxy")
-            }
+            assertThat(result).isInstanceOf(Result.Successful::class.java)
+            val successfulResult = result as Result.Successful
+            assertThat(successfulResult.data).hasSize(1)
+            assertThat(successfulResult.data[0].id).isEqualTo("1")
         }
     }
 
     @Test
-    fun `getAnObjectById_whenTableIsFull_shouldReturnSuccessfulResponse`() {
-        runBlocking {
-            val result = defaultDeviceRepository.getObjectsById(listOf("1"))
-            if (result is Result.Successful) {
-                assertEquals(result.data[0].id, "1")
-            }
-        }
+    fun `getObjects returns error result on API failure`() = runTest {
+        fakeApiService.shouldReturnError = true
+        val result = defaultDeviceRepository.getObjects()
+        assertThat(result).isInstanceOf(Result.Error::class.java)
     }
 
     @Test
-    fun `deleteAnObjectById_whenTableIsFull_shouldReturnSuccessfulResponse`() {
-        runBlocking {
-            val result = defaultDeviceRepository.deleteAnObject("1")
-            if (result is Result.Successful) {
-                assertTrue(result is Result.Successful)
-            }
-        }
+    fun `getObjectsById filters data correctly`() = runTest {
+        fakeApiService.shouldReturnError = false
+        val idsToFetch = listOf("1")
+        val result = defaultDeviceRepository.getObjectsById(idsToFetch)
+        assertThat(result).isInstanceOf(Result.Successful::class.java)
+        val successfulResult = result as Result.Successful
+        assertThat(successfulResult.data).hasSize(1)
+        assertThat(successfulResult.data.map { it.id }).containsExactly("1")
     }
 }

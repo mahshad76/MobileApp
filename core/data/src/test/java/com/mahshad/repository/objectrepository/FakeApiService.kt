@@ -7,9 +7,8 @@ import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 
-class FakeApiService(
-    private val shouldReturnError: Boolean = false
-) : ApiService {
+class FakeApiService() : ApiService {
+    var shouldReturnError = false
 
     private fun fakeListResponse(): Response<List<ObjectDto>?> {
         return if (shouldReturnError) {
