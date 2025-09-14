@@ -68,6 +68,12 @@ dependencies {
     ///flow binding
     implementation(libs.flowbinding.android)
 
+    ///unit test
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test.v164)
+
     implementation(project(':core:data'))
     implementation(project(':core:model'))
     implementation(project(':core:common'))

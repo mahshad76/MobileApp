@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/search"
-        android:name="com.mahshad.home.homeBasketFragment.HomeBasketFragment"
+        android:name="com.mahshad.home.homebasketfragment.HomeBasketFragment"
         android:label="fragment_home_b"
         tools:layout="@layout/fragment_home_b" />
 </navigation>
