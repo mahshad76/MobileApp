@@ -2,6 +2,7 @@ package com.mahshad.home.homelistfragment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.mahshad.common.getOrAwaitValues
 import com.mahshad.model.data.Object
 import com.mahshad.repository.databaserepository.BasketRepository
 import com.mahshad.repository.objectrepository.DeviceRepository
@@ -14,6 +15,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
+import kotlin.test.assertTrue
 
 class DeviceListViewModelTest {
     @Mock
@@ -43,7 +45,13 @@ class DeviceListViewModelTest {
             whenever(fakeDeviceRepository.getObjects())
                 .thenReturn(mockedData)
             deviceListViewModel.updateObjectsList()
-            deviceListViewModel.objectState
+            val list = deviceListViewModel.objectState.getOrAwaitValues(
+                2
+            )
+            assertTrue(
+                list[0] is Result.Loading &&
+                        list[1] is Result.Successful<List<Object>>
+            )
         }
 
     @After

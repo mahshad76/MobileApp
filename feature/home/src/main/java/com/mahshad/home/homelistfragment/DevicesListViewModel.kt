@@ -35,7 +35,7 @@ class DevicesListViewModel @Inject constructor(
     }
 
     private val _objectsState: MutableLiveData<Result<List<Object>>?> =
-        MutableLiveData(null)
+        MutableLiveData(Result.Loading)
     val objectState: LiveData<Result<List<Object>>?> = _objectsState
 
     val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -43,7 +43,6 @@ class DevicesListViewModel @Inject constructor(
     }
 
     fun updateObjectsList() {
-        _objectsState.value = Result.Loading
         viewModelScope.launch(coroutineExceptionHandler) {
             val result = deviceRepository.getObjects()
             _objectsState.value = result
