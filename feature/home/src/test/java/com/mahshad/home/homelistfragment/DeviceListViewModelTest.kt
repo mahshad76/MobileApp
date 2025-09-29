@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.mahshad.common.getOrAwaitValues
 import com.mahshad.model.data.Object
-import com.mahshad.repository.databaserepository.BasketRepository
+import com.mahshad.repository.offlinerepository.BasketRepository
 import com.mahshad.repository.objectrepository.DeviceRepository
 import com.mahshad.repository.objectrepository.Result
 import kotlinx.coroutines.test.runTest

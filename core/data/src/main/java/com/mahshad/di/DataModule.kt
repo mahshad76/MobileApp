@@ -1,7 +1,7 @@
 package com.mahshad.di
 
-import com.mahshad.repository.databaserepository.BasketRepository
-import com.mahshad.repository.databaserepository.DefaultBasketRepository
+import com.mahshad.repository.offlinerepository.BasketRepository
+import com.mahshad.repository.offlinerepository.DefaultBasketRepository
 import com.mahshad.repository.objectrepository.DefaultDeviceRepository
 import com.mahshad.repository.objectrepository.DeviceRepository
 import dagger.Binds

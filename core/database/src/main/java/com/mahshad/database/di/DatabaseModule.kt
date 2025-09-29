@@ -2,7 +2,7 @@ package com.mahshad.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.mahshad.database.DAO
+import com.mahshad.database.Dao
 import com.mahshad.database.Database
 import dagger.Module
 import dagger.Provides
@@ -26,7 +26,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideObjectDao(database: Database): DAO {
+    fun provideObjectDao(database: Database): Dao {
         return database.dao()
     }
 }

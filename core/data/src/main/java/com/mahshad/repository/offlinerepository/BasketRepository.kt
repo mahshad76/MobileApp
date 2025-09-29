@@ -1,4 +1,4 @@
-package com.mahshad.repository.databaserepository
+package com.mahshad.repository.offlinerepository
 
 import com.mahshad.model.data.Object
 import kotlinx.coroutines.flow.Flow

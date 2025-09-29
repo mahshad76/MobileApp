@@ -8,7 +8,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface DAO {
+interface Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(mobileObject: ObjectEntity)
 
