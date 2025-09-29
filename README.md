@@ -52,3 +52,7 @@ The application leverages a modern Android development stack:
 * **Android Testing:** AndroidX Test libraries and Robolectric for running Android tests locally on the JVM.
 * **Coroutines Testing:** Kotlinx Coroutines Test for handling asynchronous logic in unit tests.
 
+# 🎨 Design
+
+The UI design is inspired by the following Figma community design: [Shopping App for iOS or Android](https://www.figma.com/design/C2KQFYc7HcojktQHp9xtBZ/Shopping-app-%F0%9F%93%A6--Community-?node-id=0-4&p=f&t=bKthlMGscGgwVimM-0).
+
