@@ -35,3 +35,20 @@ This project is built on the MVVM architectural pattern, which ensures a clear s
 - **feature**: Contains distinct, encapsulated business logic modules.
     - **home**: Implements the main user flows, providing fragments for the **product catalog** and the **shopping cart**, along with their respective ViewModels.
 
+# ⚙️ Technologies and Libraries
+
+The application leverages a modern Android development stack:
+
+* **Language:** Kotlin
+* **UI Framework:** Android XML Layouts (Traditional View System, built on Views)
+* **Asynchronous Operations:** Kotlin Coroutines for managing background and non-blocking tasks.
+* **Local Data Persistence (Relational):** Room for an abstraction layer over SQLite, managing structured local data.
+* **Local Persistence (Key-Value/Protobuf):** DataStore (Preferences & Proto) for modern, thread-safe, and asynchronous data storage of simple key-value pairs and complex typed objects.
+* **HTTP Client:** Retrofit for a type-safe API client.
+* **Networking:** OkHttp for efficient network requests, including the Logging Interceptor for debugging.
+* **Serialization/Deserialization:** Kotlinx Serialization for converting JSON payloads into Kotlin data classes.
+* **Dependency Injection:** Hilt (built on Dagger) for a clean, scalable, and standardized DI setup.
+* **Unit Testing:** JUnit 5 (Jupiter API & Engine) and Truth for asserting conditions.
+* **Android Testing:** AndroidX Test libraries and Robolectric for running Android tests locally on the JVM.
+* **Coroutines Testing:** Kotlinx Coroutines Test for handling asynchronous logic in unit tests.
+
