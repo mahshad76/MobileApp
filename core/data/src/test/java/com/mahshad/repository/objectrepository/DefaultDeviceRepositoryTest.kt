@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 
-
 @RunWith(AndroidJUnit4::class)
 class DefaultDeviceRepositoryTest {
     private lateinit var defaultDeviceRepository: DefaultDeviceRepository

@@ -1,39 +1,32 @@
 package com.mahshad.repository.offlinerepository
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.mahshad.database.Dao
-import com.mahshad.database.Database
 import com.mahshad.model.data.Object
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class DefaultBasketRepositoryTest() {
-    private lateinit var fakeDatabase: Database
     private lateinit var fakeDao: Dao
-    private lateinit var defaultBasketRepository: DefaultBasketRepository
+    private lateinit var defaultBasketRepository: BasketRepository
 
-    @Before
+    @BeforeEach // <--- CHANGE THIS
     fun setup() {
-
+        fakeDao = FakeDao()
+        defaultBasketRepository = DefaultBasketRepository(fakeDao)
     }
 
     @Test
     fun `insert a new object into the database`() = runTest {
         defaultBasketRepository.insert(Object.DEFAULT)
-        val allObjects = fakeDao.getAll().first()
-        assertThat(allObjects).hasSize(1)
+        val allObjects = defaultBasketRepository.selectAll().first()
+        assertThat(allObjects).hasSize(2)
         assertThat(allObjects[0].id).isEqualTo("1")
         assertThat(allObjects[0].name).isEqualTo("galaxy")
-    }
-
-    @After
-    fun tearDown() {
-        fakeDatabase.close()
     }
 }
