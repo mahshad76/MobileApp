@@ -24,3 +24,10 @@ Accessible via the bottom navigation bar, this view serves as the user's shoppin
 #### 2.1. Local Persistence
 Items added from the Catalog are maintained and **persisted locally** within this view, ensuring data integrity across sessions.
 
+# 🏗️ Architecture
+The project is built on the MVVM architectural pattern, ensuring a clear separation of concerns.
+
+- View: The user interface is built using traditional Android XML layouts.
+- ViewModel: Handles user actions, and interacts with the Repository layer.
+- Model: Represents the data structures used throughout the application, including network and database responses.
+
